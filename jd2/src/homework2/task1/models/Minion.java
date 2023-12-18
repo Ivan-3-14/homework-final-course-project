@@ -19,16 +19,20 @@ public class Minion {
         this.stock = new ArrayList<>();
     }
 
-    public synchronized List<RobotPart> takeRobotParts(List<RobotPart> list) {
+    public List<RobotPart> takeRobotParts(List<RobotPart> list) {
         int countOfRobotPartInOnce = RANDOM.nextInt((MAX_NUMBER_OF_THROWS_ROBOT_PART - 1)) + 1;
-
-        if (countOfRobotPartInOnce > list.size()) {
-            countOfRobotPartInOnce = list.size();
-        }
-        for (int i = 0; i < countOfRobotPartInOnce; i++) {
-            int index = RANDOM.nextInt(list.size());
-            stock.add(list.get(index));
-            list.remove(index);
+        if (list.size() == 0) {
+            return new ArrayList<>();
+        } else {
+            if (countOfRobotPartInOnce > list.size()) {
+                countOfRobotPartInOnce = list.size();
+            }
+            for (int i = 0; i < countOfRobotPartInOnce - 1; i++) {
+                int bound = list.size() - 1;
+                int index = RANDOM.nextInt(bound);
+                stock.add(list.get(index));
+                list.remove(index);
+            }
         }
         return stock;
     }
