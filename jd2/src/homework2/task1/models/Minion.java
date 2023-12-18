@@ -20,18 +20,27 @@ public class Minion {
     }
 
     public List<RobotPart> takeRobotParts(List<RobotPart> list) {
-        int countOfRobotPartInOnce = RANDOM.nextInt((MAX_NUMBER_OF_THROWS_ROBOT_PART - 1)) + 1;
-        if (list.size() == 0) {
-            return new ArrayList<>();
+        int countOfRobotPartInOnce = RANDOM.nextInt((MAX_NUMBER_OF_THROWS_ROBOT_PART) + 1);
+        if (list.isEmpty()) {
+            return stock;
         } else {
             if (countOfRobotPartInOnce > list.size()) {
                 countOfRobotPartInOnce = list.size();
             }
             for (int i = 0; i < countOfRobotPartInOnce - 1; i++) {
-                int bound = list.size() - 1;
-                int index = RANDOM.nextInt(bound);
-                stock.add(list.get(index));
-                list.remove(index);
+                int bound = (list.size() - 4);
+                if (bound == 0) {
+                    stock.add(list.get(0));
+                    list.remove(0);
+                }
+                else if (bound < 0){
+                    return stock;
+                }
+                else {
+                    int index = RANDOM.nextInt(bound);
+                    stock.add(list.get(index));
+                    list.remove(index);
+                }
             }
         }
         return stock;

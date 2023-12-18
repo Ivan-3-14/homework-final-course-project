@@ -37,7 +37,7 @@ public class Factory extends Thread {
     }
 
     public List<RobotPart> throwRobotPartsInDumpEveryNight() {
-        int count = RANDOM.nextInt(3) + 1;
+        int count = RANDOM.nextInt(4) + 1;
         for (int i = 0; i < count; i++) {
             dump.add(generateRobotPart());
         }
