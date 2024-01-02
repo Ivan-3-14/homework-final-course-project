@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static homework2.task1.utils.Utils.COUNT_OF_NIGHT;
-import static homework2.task1.utils.Utils.DELAY_FOR_THROW_DETAILS;
+import static homework2.task1.utils.Utils.*;
 
 public class Factory extends Thread {
     private static final Random RANDOM = new Random();
@@ -16,18 +15,18 @@ public class Factory extends Thread {
     public Factory(List<RobotPart> dump) {
         for (int i = 0; i < 20; i++) {
             dump.add(generateRobotPart());
-            this.dump = dump;
         }
+        this.dump = dump;
     }
 
 
     @Override
     public void run() {
-            int i = 1;
-            while (i <= COUNT_OF_NIGHT) {
+            int counterOfNight = 1;
+            while (counterOfNight <= COUNT_OF_NIGHT) {
                 dump = throwRobotPartsInDumpEveryNight();
-                System.out.println("night number " + i);
-                i++;
+                System.out.println("night number " + counterOfNight);
+                counterOfNight++;
                 try {
                     Thread.sleep(DELAY_FOR_THROW_DETAILS);
                 } catch (InterruptedException e) {
@@ -37,7 +36,7 @@ public class Factory extends Thread {
     }
 
     public List<RobotPart> throwRobotPartsInDumpEveryNight() {
-        int count = RANDOM.nextInt(4) + 1;
+        int count = RANDOM.nextInt(MAX_NUMBER_OF_THROWS_ROBOT_PART) + 1;
         for (int i = 0; i < count; i++) {
             dump.add(generateRobotPart());
         }
