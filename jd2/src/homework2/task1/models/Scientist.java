@@ -45,7 +45,7 @@ public class Scientist extends Thread {
     }
 
     public int createRobot() {
-        storage = minion.takeRobotParts(factory.getDetailsFromDump());
+        storage = minion.takeRobotParts(factory.dump);
         for (int i = storage.size() - 1; i >= 0; i--) {
             if (!robot.contains(storage.get(i))) {
                 robot.add(storage.get(i));

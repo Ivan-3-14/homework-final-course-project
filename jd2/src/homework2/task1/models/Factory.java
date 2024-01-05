@@ -2,7 +2,6 @@ package homework2.task1.models;
 
 import homework2.task1.robot.RobotPart;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,20 +18,19 @@ public class Factory extends Thread {
         this.dump = dump;
     }
 
-
     @Override
     public void run() {
-            int counterOfNight = 1;
-            while (counterOfNight <= COUNT_OF_NIGHT) {
-                dump = throwRobotPartsInDumpEveryNight();
-                System.out.println("night number " + counterOfNight);
-                counterOfNight++;
-                try {
-                    Thread.sleep(DELAY_FOR_THROW_DETAILS);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+        int counterOfNight = 1;
+        while (counterOfNight <= COUNT_OF_NIGHT) {
+            dump = throwRobotPartsInDumpEveryNight();
+            System.out.println("night number " + counterOfNight);
+            counterOfNight++;
+            try {
+                Thread.sleep(DELAY_FOR_THROW_DETAILS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
+        }
     }
 
     public List<RobotPart> throwRobotPartsInDumpEveryNight() {
@@ -45,12 +43,5 @@ public class Factory extends Thread {
 
     private RobotPart generateRobotPart() {
         return RobotPart.values()[RANDOM.nextInt((RobotPart.values().length))];
-    }
-
-    public List<RobotPart> getDetailsFromDump() {
-        if (dump.isEmpty()) {
-        return new ArrayList<>();
-        }
-        return dump;
     }
 }
