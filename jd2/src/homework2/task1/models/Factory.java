@@ -2,6 +2,7 @@ package homework2.task1.models;
 
 import homework2.task1.robot.RobotPart;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,13 +10,13 @@ import static homework2.task1.utils.Utils.*;
 
 public class Factory extends Thread {
     private static final Random RANDOM = new Random();
-    List<RobotPart> dump;
+    private List<RobotPart> dump = new ArrayList<>();
 
-    public Factory(List<RobotPart> dump) {
+    public Factory() {
         for (int i = 0; i < 20; i++) {
             dump.add(generateRobotPart());
         }
-        this.dump = dump;
+
     }
 
     @Override
@@ -43,5 +44,12 @@ public class Factory extends Thread {
 
     private RobotPart generateRobotPart() {
         return RobotPart.values()[RANDOM.nextInt((RobotPart.values().length))];
+    }
+
+    public synchronized List<RobotPart> getDetailsFromDump() {
+        if (dump.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return dump;
     }
 }
