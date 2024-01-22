@@ -2,12 +2,12 @@ package org.example;
 
 import org.example.dao.PersonDAOImp;
 import org.example.dto.PersonDTO;
-import org.example.utils.JDBCResource;
+import org.example.dto.utils.JDBCResource;
 
 import java.sql.*;
 import java.util.List;
 
-import static org.example.utils.ConstantContainer.*;
+import static org.example.dto.utils.ConstantContainer.*;
 
 public class App {
     public static void main(String[] args) {
