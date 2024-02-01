@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 
-public interface DAO <T> {
-    T save(Connection connection,
+public interface DAO <PersonDTO> {
+    PersonDTO save(Connection connection,
            int age,
            double salary,
            String passport,
@@ -14,7 +14,7 @@ public interface DAO <T> {
            Date dateOfBirthday,
            Time time,
            String letter) throws SQLException;
-    T get(Connection connection, int id) throws SQLException;
-    void update(Connection connection, T t, int id) throws SQLException;
+    PersonDTO get(Connection connection, int id) throws SQLException;
+    void update(Connection connection, PersonDTO t, int id) throws SQLException;
     int delete(Connection connection, int id) throws SQLException;
 }

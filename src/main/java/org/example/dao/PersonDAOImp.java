@@ -6,8 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.utils.ConstantContainer.*;
-import static org.example.utils.RecordPerson.insertPerson;
+import static org.example.dto.utils.ConstantContainer.*;
+import static org.example.dto.utils.RecordPerson.insertPerson;
 
 public class PersonDAOImp implements PersonDAO {
 
@@ -21,6 +21,8 @@ public class PersonDAOImp implements PersonDAO {
             PersonDTO personDTO = buildPersonDTO(resultSet);
             persons.add(personDTO);
         }
+        resultSet.close();
+        statement.close();
         return persons;
     }
 
@@ -64,6 +66,8 @@ public class PersonDAOImp implements PersonDAO {
         while (resultSet.next()) {
             personDTO = buildPersonDTO(resultSet);
         }
+        resultSet.close();
+        statement.close();
         return personDTO;
     }
 
