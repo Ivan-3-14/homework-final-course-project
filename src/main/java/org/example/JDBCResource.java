@@ -3,13 +3,13 @@ package org.example;
 import java.util.ResourceBundle;
 
 public class JDBCResource {
-    public static final String DATEBASE_RESOURCE = "resource";
+    public static final String DATABASE_RESOURCE = "resource";
 
     private static final String URL_KEY = "url";
     private static final String USER_KEY = "user";
     private static final String PASSWORD_KEY = "password";
 
-    private static final ResourceBundle resource = ResourceBundle.getBundle(DATEBASE_RESOURCE);
+    private static final ResourceBundle resource = ResourceBundle.getBundle(DATABASE_RESOURCE);
 
     private static final String URL = getValue(URL_KEY);
     private static final String USER = getValue(USER_KEY);

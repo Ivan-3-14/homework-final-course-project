@@ -26,10 +26,18 @@ public class PrinterDatabaseInfo {
             System.out.println("table name: " + actualTable.toUpperCase());
             int count = 1;
             while (rs.next()) {
-                System.out.println(count + "), name: " + rs.getString(NAME_OF_COLUMNS_FOR_PRINT_META) + ", type: "
-                        + rs.getString(TYPE_OF_COLUMNS_FOR_PRINT_META) + ", size: "
-                        + rs.getString(SIZE_OF_COLUMNS_FOR_PRINT_META)
-                );
+
+                String result = String.format(
+                        "%d%s%s%s%s%s%s",
+                        count,
+                        NAME,
+                        rs.getString(NAME_OF_COLUMNS_FOR_PRINT_META),
+                        TYPE,
+                        rs.getString(TYPE_OF_COLUMNS_FOR_PRINT_META),
+                        SIZE,
+                        rs.getString(SIZE_OF_COLUMNS_FOR_PRINT_META)
+                        );
+                System.out.println(result);
                 count++;
             }
         }
