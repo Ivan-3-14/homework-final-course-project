@@ -16,46 +16,73 @@ public class App {
                 JDBCResource.getUser(),
                 JDBCResource.getPassword())) {
 
+            createTable(connection);
+
             PersonDAOImp personDAOImp = new PersonDAOImp();
             List<PersonDTO> listOfPerson = personDAOImp.getAll(connection);
 
             System.out.println("Start list: ");
             listOfPerson.forEach(System.out::println);
 
-            personDAOImp.save(connection, 31,1000,"MP1212346","Vitebsk",
-                    Date.valueOf("1993-01-18"), Time.valueOf("12:30:00"), "utc");
+            PersonDTO personDTO = PersonDTO.builder()
+                    .age(31)
+                    .salary(1000.1)
+                    .passport("MP1212346")
+                    .address("Vitebsk")
+                    .dateOfBirthday(Date.valueOf("1993-01-18"))
+                    .timeToLunch(Time.valueOf("12:30:00"))
+                    .dateTimeCreate(new Timestamp(System.currentTimeMillis()))
+                    .letter("utc")
+                    .build();
+
+            personDAOImp.save(connection, personDTO);
+            personDAOImp.save(connection, personDTO);
+            personDAOImp.save(connection, personDTO);
+
+
             System.out.println("After save: ");
             listOfPerson = personDAOImp.getAll(connection);
             listOfPerson.forEach(System.out::println);
 
-            PersonDTO personDTO = personDAOImp.get(connection, 21);
-            if (personDTO == null) {
+            PersonDTO personDTO1 = personDAOImp.get(connection, 3);
+            if (personDTO1 == null) {
                 System.out.println("This person not found!");
             } else {
                 System.out.println("You get: ");
-                System.out.println(personDTO);
+                System.out.println(personDTO1);
             }
-            personDTO.setAge(21);
-             personDTO.setAddress("new Address");
-            personDAOImp.update(connection, personDTO, 19);
+
+            assert personDTO1 != null;
+            personDTO1.setAge(1);
+            personDTO1.setAddress("new Address");
+            personDAOImp.update(connection, personDTO1, 1);
             System.out.println("After update: ");
             listOfPerson = personDAOImp.getAll(connection);
             listOfPerson.forEach(System.out::println);
 
-            personDAOImp.delete(connection, 37);
+            personDAOImp.delete(connection, 2);
             System.out.println("After delete: ");
             listOfPerson = personDAOImp.getAll(connection);
             listOfPerson.forEach(System.out::println);
+
+            dropTable(connection);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void createDatabase(Connection connection) {
+    private static void createTable(Connection connection) {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(CREATE_DATABASE_COMMAND);
             statement.executeUpdate(CREATE_TABLE_COMMAND);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void dropTable(Connection connection) {
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(DROP_PEOPLE_TABLE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
