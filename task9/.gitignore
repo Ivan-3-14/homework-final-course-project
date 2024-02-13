@@ -2,6 +2,8 @@
 ### Maven template
 target/
 .idea/
+idea/
+task9/.idea/
 task9.iml
 release.properties
 dependency-reduced-pom.xml
@@ -10,7 +12,19 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 /task9/target/
-/task9/.idea/
-/task9/task9.iml
-. gitignore
-.gitignore
+**/task9/.idea/
+**/task9/task9.iml
+C:\Users\user\IdeaProjects\task9\task9.iml
+C:\Users\user\IdeaProjects\task9\.gitignore
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+C:\Users\user\IdeaProjects\person/
+C:\Users\user\IdeaProjects\task4/
+C:\Users\user\IdeaProjects\jd2/
+C:\Users\user\IdeaProjects\src/
