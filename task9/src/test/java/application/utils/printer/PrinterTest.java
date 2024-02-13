@@ -44,4 +44,5 @@ class PrinterTest {
         Printer.printNullPointerMessage();
         Assert.assertTrue(new String(mockOut.toByteArray(), StandardCharsets.UTF_8).contains("this is null"));
     }
+
 }

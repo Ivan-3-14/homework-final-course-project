@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class HibernateUtil {
+
     public static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
             createEntityManagerFactory("ivan");
 

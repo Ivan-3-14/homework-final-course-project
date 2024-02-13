@@ -26,4 +26,5 @@ class HibernateUtilTest {
         HibernateUtil.close();
         Assert.assertFalse(entityManager.isOpen());
     }
+
 }

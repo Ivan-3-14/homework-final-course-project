@@ -5,7 +5,6 @@ import application.dto.address.Address;
 
 import javax.persistence.EntityManager;
 
-@SuppressWarnings("checkstyle:WhitespaceAround")
 public class AddressDAOImpl extends DAOImpl<Address> implements AddressDAO {
 
     public AddressDAOImpl(EntityManager entityManager) {

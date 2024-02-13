@@ -15,6 +15,9 @@ import static application.dao.daoClasses.testUtils.MockConstant.*;
 
 public class MockUtils {
 
+    private MockUtils() {
+    }
+
     public static People getPeople(){
         return People
                 .builder()

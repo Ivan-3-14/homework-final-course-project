@@ -46,4 +46,5 @@ public class PeopleDAOImpl extends DAOImpl<People> implements PeopleDAO {
     public Integer delete(int id) {
         return super.delete(id);
     }
+
 }

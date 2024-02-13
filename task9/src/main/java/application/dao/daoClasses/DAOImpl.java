@@ -42,6 +42,7 @@ public abstract class DAOImpl<T> implements DAO<T> {
         entityManager.getTransaction().begin();
 
         T result = entityManager.find(getEntityClass(), id);
+
         if (checkFindById(result)) {
             entityManager.getTransaction().commit();
             return null;

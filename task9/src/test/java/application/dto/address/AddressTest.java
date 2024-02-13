@@ -49,7 +49,6 @@ class AddressTest {
         );
     }
 
-
     @Test
     void getId() {
         Address address = getAddress();

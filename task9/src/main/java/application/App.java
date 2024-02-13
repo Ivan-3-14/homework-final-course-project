@@ -99,6 +99,7 @@ public class App {
         addressDAO.delete(1);
         peopleDAO.delete(1);
 
+
         HibernateUtil.close();
     }
 }

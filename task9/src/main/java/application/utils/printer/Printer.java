@@ -24,4 +24,5 @@ public class Printer {
     public static void printNullPointerMessage() {
         System.out.println("this is null");
     }
+
 }

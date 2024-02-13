@@ -16,5 +16,7 @@ public class MockConstant {
     public static String ADDRESS_STREET2 = "Liquibase";
     public static Integer ADDRESS_HOUSE2 = 8;
 
-    private MockConstant() {}
+    private MockConstant() {
+
+    }
 }

@@ -29,9 +29,7 @@ class PeopleDAOImplTest {
     void getAll() {
         peopleDAO.create(people1);
         peopleDAO.create(people2);
-
         List<People> peopleList = peopleDAO.getAll();
-
         int countOfPeople = Math.toIntExact(MockUtils.getDataBaseCount(entityManager, people1));
         Assert.assertEquals(java.util.Optional.of(countOfPeople), java.util.Optional.of(peopleList.size()));
     }
