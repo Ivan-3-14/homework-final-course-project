@@ -1,0 +1,65 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-default-value-order-table" author="ivan">
+        <insert tableName="orders">
+            <column name="delivery_date" value="2024-05-31" />
+            <column name="delivery_time" value="16:19:00" />
+            <column name="concrete_volume" value="5" />
+            <column name="concrete_id" value="1" />
+            <column name="concrete_grade_id" value="1" />
+            <column name="mobility_id" value="1" />
+            <column name="building_object_id" value="1" />
+            <column name="user_id" value="3" />
+            <column name="manager_id" value="1" />
+            <column name="cost" value="356.4" />
+            <column name="comment" value="" />
+            <column name="status" value="NEW"/>
+            <column name="time_create" value="2024-04-29 12:15:32" />
+        </insert>
+        <insert tableName="orders">
+            <column name="delivery_date" value="2024-05-28" />
+            <column name="delivery_time" value="17:22:00" />
+            <column name="concrete_volume" value="15" />
+            <column name="concrete_id" value="2" />
+            <column name="concrete_grade_id" value="2" />
+            <column name="mobility_id" value="3" />
+            <column name="building_object_id" value="2" />
+            <column name="user_id" value="3" />
+            <column name="manager_id" value="1" />
+            <column name="cost" value="1354.4" />
+            <column name="comment" value="" />
+            <column name="status" value="NEW"/>
+            <column name="time_create" value="2024-04-29 12:15:33" />
+        </insert>
+        <insert tableName="orders">
+            <column name="delivery_date" value="2024-05-29" />
+            <column name="delivery_time" value="15:22:00" />
+            <column name="concrete_volume" value="8" />
+            <column name="concrete_id" value="2" />
+            <column name="concrete_grade_id" value="4" />
+            <column name="mobility_id" value="4" />
+            <column name="building_object_id" value="3" />
+            <column name="user_id" value="3" />
+            <column name="manager_id" value="1" />
+            <column name="cost" value="954.6" />
+            <column name="comment" value="" />
+            <column name="status" value="CLOSED"/>
+            <column name="time_create" value="2024-04-29 12:16:33" />
+        </insert>
+        <insert tableName="orders">
+            <column name="delivery_date" value="2024-05-19" />
+            <column name="delivery_time" value="15:22:00" />
+            <column name="concrete_volume" value="6" />
+            <column name="concrete_id" value="1" />
+            <column name="concrete_grade_id" value="5" />
+            <column name="mobility_id" value="5" />
+            <column name="building_object_id" value="4" />
+            <column name="user_id" value="3" />
+            <column name="manager_id" value="1" />
+            <column name="cost" value="654.6" />
+            <column name="comment" value="comment" />
+            <column name="status" value="CLOSED"/>
+            <column name="time_create" value="2024-04-29 12:16:33" />
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

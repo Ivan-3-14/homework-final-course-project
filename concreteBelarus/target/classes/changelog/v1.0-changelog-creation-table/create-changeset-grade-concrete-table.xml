@@ -1,0 +1,48 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_concrete_grade" author="ivan">
+
+        <createTable tableName="concrete_grade">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="nomination" type="enum(
+            'M150',
+            'M200',
+            'M250',
+            'M300',
+            'M350',
+            'M400',
+            'M450',
+            'M500'
+            )" />
+
+            <column name="concrete_class" type="enum(
+            'C8_10',
+            'C12_15',
+            'C16_20',
+            'C18_22',
+            'C20_25',
+            'C25_30',
+            'C27_32',
+            'C30_37'
+            )"/>
+
+            <column name="max_waterproof" type="enum(
+            'W2',
+            'W4',
+            'W6',
+            'W8',
+            'W10',
+            'W12'
+            )"/>
+
+            <column name="max_frost_resistance" type="enum(
+            'F50',
+            'F100',
+            'F150',
+            'F200',
+            'F300'
+            )"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

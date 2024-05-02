@@ -1,0 +1,10 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-default-value-concrete_table" author="ivan">
+        <insert tableName="concrete">
+            <column name="aggregate" value="CRUSHED_STONE"/>
+        </insert>
+        <insert tableName="concrete">
+            <column name="aggregate" value="GRAVEL"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

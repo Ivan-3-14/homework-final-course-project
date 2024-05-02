@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-default-value-concrete_table" author="ivan">
+        <insert tableName="auto_price">
+            <column name="price" value="180.00"/>
+        </insert>
+        <insert tableName="auto_price">
+            <column name="price" value="190.00"/>
+        </insert>
+        <insert tableName="auto_price">
+            <column name="price" value="200.00"/>
+        </insert>
+        <insert tableName="auto_price">
+            <column name="price" value="140.00"/>
+        </insert>
+        <insert tableName="auto_price">
+            <column name="price" value="160.00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

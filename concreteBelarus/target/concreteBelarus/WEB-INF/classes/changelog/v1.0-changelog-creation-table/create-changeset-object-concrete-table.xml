@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_object_concrete" author="ivan">
+
+        <createTable tableName="object_concrete">
+            <column name="object_id" type="int"/>
+            <column name="concrete_id" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-to-object_concrete1" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="concrete_id"
+                baseTableName="object_concrete"
+                baseTableCatalogName="concretebelarus"
+                constraintName="fk_concrete_id_oc"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="concrete"
+                referencedTableCatalogName="concretebelarus"
+                referencedTableSchemaName="concretebelarus"
+        />
+    </changeSet>
+    <changeSet id="add-foreign-key-constraint-to-object_concrete2" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="object_id"
+                baseTableName="object_concrete"
+                baseTableCatalogName="concretebelarus"
+                constraintName="fk_grade_object_id_oc"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="building_object"
+                referencedTableCatalogName="concretebelarus"
+                referencedTableSchemaName="concretebelarus"
+        />
+    </changeSet>
+</databaseChangeLog>

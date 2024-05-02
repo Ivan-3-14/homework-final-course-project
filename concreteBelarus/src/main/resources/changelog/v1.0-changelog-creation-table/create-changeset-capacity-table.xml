@@ -1,0 +1,30 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_capacity" author="ivan">
+
+        <createTable tableName="capacity">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="car_type" type="enum('DUMP_TRUCK', 'CONCRETE_MIXER_TRUCK')" />
+            <column name="auto_capacity" type="int" />
+            <column name="delivery_coeff" type="int" />
+            <column name="del_coef_aft50" type="int" />
+            <column name="auto_price_id" type="int" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-to-capacity" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="auto_price_id"
+                baseTableName="capacity"
+                baseTableCatalogName="concretebelarus"
+                constraintName="fk_grade_auto_price_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="auto_price"
+                referencedTableCatalogName="concretebelarus"
+                referencedTableSchemaName="concretebelarus"
+        />
+    </changeSet>
+</databaseChangeLog>
