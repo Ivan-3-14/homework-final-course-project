@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-start-value-capacity_table" author="ivan">
+        <insert tableName="capacity">
+            <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
+            <column name="auto_capacity" value="8"/>
+            <column name="delivery_coeff" value="4"/>
+            <column name="del_coeff_aft50" value="5"/>
+            <column name="auto_price_id" value="1"/>
+        </insert>
+        <insert tableName="capacity">
+            <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
+            <column name="auto_capacity" value="9"/>
+            <column name="delivery_coeff" value="4"/>
+            <column name="del_coeff_aft50" value="5"/>
+            <column name="auto_price_id" value="2"/>
+        </insert>
+        <insert tableName="capacity">
+            <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
+            <column name="auto_capacity" value="10"/>
+            <column name="delivery_coeff" value="4"/>
+            <column name="del_coeff_aft50" value="5"/>
+            <column name="auto_price_id" value="3"/>
+        </insert>
+        <insert tableName="capacity">
+            <column name="car_type" value="DUMP_TRUCK"/>
+            <column name="auto_capacity" value="4"/>
+            <column name="delivery_coeff" value="3"/>
+            <column name="del_coeff_aft50" value="4"/>
+            <column name="auto_price_id" value="4"/>
+        </insert>
+        <insert tableName="capacity">
+            <column name="car_type" value="DUMP_TRUCK"/>
+            <column name="auto_capacity" value="8"/>
+            <column name="delivery_coeff" value="4"/>
+            <column name="del_coeff_aft50" value="5"/>
+            <column name="auto_price_id" value="5"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

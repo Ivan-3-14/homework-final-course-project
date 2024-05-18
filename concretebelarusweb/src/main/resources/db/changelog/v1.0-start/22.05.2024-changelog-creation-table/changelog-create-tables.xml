@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <include file="create-changeset-user-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-manager-table.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="create-changeset-concrete-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-grade-concrete-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-concrete-mobility-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-concrete-price-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-concrete-grade-mobility-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-concrete-concrete-grade-table.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="create-changeset-auto-price-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-capacity-table.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="create-changeset-building-object-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-orders-table.xml"
+             relativeToChangelogFile="true"/>
+
+    <include file="create-changeset-object-concrete-table.xml"
+             relativeToChangelogFile="true"/>
+    <include file="create-changeset-object-concrete-grade-table.xml"
+             relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
