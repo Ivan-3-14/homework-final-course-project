@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_manager" author="via">
+        <createTable tableName="manager">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="role" type="varchar(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-to-manager" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="manager"
+                baseTableCatalogName="c_b_web"
+                constraintName="fk_manager_user_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="user"
+                referencedTableCatalogName="c_b_web"
+                referencedTableSchemaName="c_b_web"
+        />
+    </changeSet>
+</databaseChangeLog>
