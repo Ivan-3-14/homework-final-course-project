@@ -24,13 +24,6 @@ public class BuildingObjectController {
 
     public static final String ALL_OBJECTS = "allObjects";
 
-//    @GetMapping(path = "/myObjects")
-//    public String goToMyObjects(Model model, @RequestParam Long currentUserId) {
-//        List<BuildingObjectDTO> listObject = buildingObjectService.getAllObjectsByUserId(currentUserId);
-//        model.addAttribute(LIST_OF_OBJECTS, listObject);
-//        return ALL_OBJECTS;
-//    }
-
     @GetMapping(path = "/myObjects")
     public String goToMyOrders(Model model, @RequestParam Long currentUserId,
                                @RequestParam(defaultValue = "0") int currentPage) {
