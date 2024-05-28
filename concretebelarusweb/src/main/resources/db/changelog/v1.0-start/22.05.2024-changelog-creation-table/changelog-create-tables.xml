@@ -22,6 +22,8 @@
 
     <include file="create-changeset-auto-price-table.xml"
              relativeToChangelogFile="true"/>
+    <include file="create-changeset-delivery-coefficient-table.xml"
+             relativeToChangelogFile="true"/>
     <include file="create-changeset-capacity-table.xml"
              relativeToChangelogFile="true"/>
 

@@ -30,7 +30,7 @@ public class AutoCapacity {
     private Integer deliveryCoefficient;
 
     @Column(name = "del_coef_aft50")
-    private Integer deliCoeffAft50;
+    private Integer deliveryCoefficientAft50;
 
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})

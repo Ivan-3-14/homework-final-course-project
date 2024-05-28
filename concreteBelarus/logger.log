@@ -182,7 +182,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -222,7 +222,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -262,7 +262,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -302,7 +302,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -342,7 +342,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -382,7 +382,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -422,7 +422,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -462,7 +462,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -502,7 +502,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -542,7 +542,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -582,7 +582,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -622,7 +622,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -662,7 +662,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "c
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id integer not null auto_increment, dateOfDelivery date, distanceToObject' at line 1
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -893,7 +893,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.auto_transport' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -922,7 +922,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.capacity' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -951,7 +951,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_concrete_grade' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -980,7 +980,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_concrete_grade' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1009,7 +1009,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_mobility' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1038,7 +1038,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_mobility' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1067,7 +1067,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_price' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1096,7 +1096,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.concrete_price' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1125,7 +1125,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.object_concrete' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1154,7 +1154,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.object_concrete' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1183,7 +1183,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.object_concrete_grade' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1212,7 +1212,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.object_concrete_grade' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1241,7 +1241,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.orders' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1270,7 +1270,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.orders' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1299,7 +1299,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.orders' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1328,7 +1328,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at application.utils.hibernate.HibernateUtils.<clinit>(HibernateUtils.java:11)
 	at application.datalevel.DAO.implementations.DAOImpl.<init>(DAOImpl.java:18)
-	at application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl.<init>(ConcreteGradeImpl.java:7)
+	at application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl.<init>(ConcreteGradeImpl.java:7)
 	at Main.main(Main.java:21)
 Caused by: java.sql.SQLSyntaxErrorException: Table 'concretebelarus.orders' doesn't exist
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
@@ -1413,8 +1413,8 @@ org.hibernate.HibernateException: More than one row with the given identifier wa
 	at application.datalevel.DAO.implementations.DAOImpl.lambda$read$1(DAOImpl.java:39)
 	at application.utils.functionalinterface.UtilsInterface.superMethodInterface(UtilsInterface.java:9)
 	at application.datalevel.DAO.implementations.DAOImpl.read(DAOImpl.java:40)
-	at application.datalevel.DAO.implementations.auto.AutoCapacityImpl.read(AutoCapacityImpl.java:21)
-	at application.datalevel.DAO.implementations.auto.AutoCapacityImpl.read(AutoCapacityImpl.java:7)
+	at application.datalevel.DAO.implementations.auto.AutoCapacityDAOImpl.read(AutoCapacityImpl.java:21)
+	at application.datalevel.DAO.implementations.auto.AutoCapacityDAOImpl.read(AutoCapacityImpl.java:7)
 	at Main.main(Main.java:52)
 [ INFO ] - org.hibernate.jpa.internal.util.LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: ivan]
 [ INFO ] - org.hibernate.Version:44 - HHH000412: Hibernate ORM core version 5.6.7.Final
@@ -1466,8 +1466,8 @@ org.hibernate.HibernateException: More than one row with the given identifier wa
 	at application.datalevel.DAO.implementations.DAOImpl.lambda$read$1(DAOImpl.java:39)
 	at application.utils.functionalinterface.UtilsInterface.superMethodInterface(UtilsInterface.java:9)
 	at application.datalevel.DAO.implementations.DAOImpl.read(DAOImpl.java:40)
-	at application.datalevel.DAO.implementations.auto.AutoCapacityImpl.read(AutoCapacityImpl.java:21)
-	at application.datalevel.DAO.implementations.auto.AutoCapacityImpl.read(AutoCapacityImpl.java:7)
+	at application.datalevel.DAO.implementations.auto.AutoCapacityDAOImpl.read(AutoCapacityImpl.java:21)
+	at application.datalevel.DAO.implementations.auto.AutoCapacityDAOImpl.read(AutoCapacityImpl.java:7)
 	at Main.main(Main.java:52)
 [ INFO ] - org.hibernate.jpa.internal.util.LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: ivan]
 [ INFO ] - org.hibernate.Version:44 - HHH000412: Hibernate ORM core version 5.6.7.Final

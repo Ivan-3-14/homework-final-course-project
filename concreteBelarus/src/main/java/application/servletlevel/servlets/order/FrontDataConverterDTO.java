@@ -1,8 +1,8 @@
 package application.servletlevel.servlets.order;
 
-import application.datalevel.DAO.implementations.concrete.ConcreteGradeImpl;
-import application.datalevel.DAO.implementations.concrete.ConcreteImpl;
-import application.datalevel.DAO.implementations.concrete.MobilityImpl;
+import application.datalevel.DAO.implementations.concrete.ConcreteGradeDAOImpl;
+import application.datalevel.DAO.implementations.concrete.ConcreteDAOImpl;
+import application.datalevel.DAO.implementations.concrete.MobilityDAOImpl;
 import application.datalevel.DAO.interfaces.concrete.ConcreteDAO;
 import application.datalevel.DAO.interfaces.concrete.ConcreteGradeDAO;
 import application.datalevel.DAO.interfaces.concrete.MobilityDAO;
@@ -18,6 +18,7 @@ import application.utils.enums.orderstatus.OrderStatus;
 import application.utils.enums.aggregate.Aggregate;
 import application.utils.enums.grades.GradesConcrete;
 import application.utils.enums.mobilityvalue.MobilityValue;
+import application.utils.enums.roles.Roles;
 import application.utils.mappers.ConcreteGradeMapper;
 import application.utils.mappers.ConcreteMapper;
 import application.utils.mappers.MobilityMapper;
@@ -40,11 +41,11 @@ import static application.utils.constant.ConstantsContainer.MY_TIME_FORMAT;
 
 public class FrontDataConverterDTO {
 
-    private final MobilityDAO mobilityDAOImpl = new MobilityImpl();
+    private final MobilityDAO mobilityDAOImpl = new MobilityDAOImpl();
     private final MobilityMapper mobilityMapper = new MobilityMapper();
-    private final ConcreteDAO concreteDAOImpl = new ConcreteImpl();
+    private final ConcreteDAO concreteDAOImpl = new ConcreteDAOImpl();
     private final ConcreteMapper concreteMapper = new ConcreteMapper();
-    private final ConcreteGradeDAO concreteGradeDAOImpl = new ConcreteGradeImpl();
+    private final ConcreteGradeDAO concreteGradeDAOImpl = new ConcreteGradeDAOImpl();
     private final ConcreteGradeMapper concreteGradeMapper = new ConcreteGradeMapper();
     private final ApplicationException applicationException = new ApplicationException();
 
@@ -62,7 +63,7 @@ public class FrontDataConverterDTO {
 
         String name = req.getParameter(NAME);
         String surname = req.getParameter(SURNAME);
-        String numberOfPhone = req.getParameter(NUMBER_OF_PHONE);
+        String telephoneNumber = req.getParameter(TEL_NUMBER);
 
         BuildingObjectDTO buildingObjectDTO = null;
         OrderDTO orderDTO = null;
@@ -81,7 +82,7 @@ public class FrontDataConverterDTO {
             if (Aggregate.GRAVEL.toString().equals(aggregate) && grade > GRAVEL_BORDER) {
                 req.setAttribute(NAME, name);
                 req.setAttribute(SURNAME, surname);
-                req.setAttribute(NUMBER_OF_PHONE, numberOfPhone);
+                req.setAttribute(TEL_NUMBER, telephoneNumber);
                 req.setAttribute(DISTANCE, distanceToObject);
                 req.setAttribute(VOLUME, volumeOfConcrete);
                 req.setAttribute(OBJECT_NAME, nameOfObject);
@@ -90,13 +91,13 @@ public class FrontDataConverterDTO {
                 req.getServletContext().getRequestDispatcher(path).forward(req, resp);
             }
 
-            if (name.isEmpty() || surname.isEmpty() || numberOfPhone.isEmpty()) {
+            if (name.isEmpty() || surname.isEmpty() || telephoneNumber.isEmpty()) {
                 req.getServletContext().getRequestDispatcher(path).forward(req, resp);
             }
 
             Date date = orderDateConverter(dateOfDelivery);
             if (date.compareTo(new java.util.Date()) < ZERO) {
-                applicationException.dateException(req, resp, name, surname, numberOfPhone, distanceToObject,
+                applicationException.dateException(req, resp, name, surname, telephoneNumber, distanceToObject,
                         volumeOfConcrete, nameOfObject, comment, INCORRECT_TIME_OR_DATE);
                 return null;
             }
@@ -104,7 +105,7 @@ public class FrontDataConverterDTO {
             Time time = orderTimeConverter(timeOfDelivery);
             if (time.compareTo(Time.valueOf(START_WORK_TIME)) < ZERO
                     || time.compareTo(Time.valueOf(END_WORK_TIME)) > ZERO) {
-                applicationException.timeException(req, resp, name, surname, numberOfPhone, distanceToObject,
+                applicationException.timeException(req, resp, name, surname, telephoneNumber, distanceToObject,
                         volumeOfConcrete, nameOfObject, comment, INCORRECT_TIME_OR_DATE);
                 return null;
             }
@@ -113,6 +114,7 @@ public class FrontDataConverterDTO {
             ConcreteGradeDTO concreteGradeDTO = orderGradeConverter(grade);
             ConcreteDTO concreteDTO = orderConcreteConverter(aggregate);
             userDTO = (UserDTO) req.getSession().getAttribute(CURRENT);
+            userDTO = checkUserRole(userDTO);
 
             buildingObjectDTO = BuildingObjectDTO.builder()
                     .nameOfObject(nameOfObject)
@@ -131,10 +133,10 @@ public class FrontDataConverterDTO {
                     .orderTimeCreate(new Timestamp(System.currentTimeMillis()))
                     .build();
         } catch (NumberFormatException e) {
-            applicationException.orderNumberFormatException(req, resp, name, surname, numberOfPhone, nameOfObject,
+            applicationException.orderNumberFormatException(req, resp, name, surname, telephoneNumber, nameOfObject,
                     comment, path);
         } catch (ParseException e) {
-            applicationException.orderParseException(req, resp, name, surname, numberOfPhone, distanceToObject,
+            applicationException.orderParseException(req, resp, name, surname, telephoneNumber, distanceToObject,
                     volumeOfConcrete, nameOfObject, comment, path);
         }
         return OrderInformDTO.builder()
@@ -143,7 +145,7 @@ public class FrontDataConverterDTO {
                 .buildingObjectDTO(buildingObjectDTO)
                 .name(name)
                 .surname(surname)
-                .telephoneNumber(numberOfPhone)
+                .telephoneNumber(telephoneNumber)
                 .build();
     }
 
@@ -171,5 +173,12 @@ public class FrontDataConverterDTO {
     private ConcreteDTO orderConcreteConverter(String aggregate) {
         Aggregate orderAggregate = Aggregate.getAggregateByValue(aggregate);
         return concreteMapper.entityToDTO(concreteDAOImpl.getConcreteByValue(orderAggregate));
+    }
+
+    private UserDTO checkUserRole(UserDTO userDTO) {
+        if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) {
+            return null;
+        }
+        return userDTO;
     }
 }

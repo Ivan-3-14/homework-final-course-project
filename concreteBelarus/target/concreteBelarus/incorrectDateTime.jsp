@@ -28,7 +28,7 @@
 
 <%request.getSession().setAttribute(NAME, request.getAttribute(NAME));%>
 <%request.getSession().setAttribute(SURNAME, request.getAttribute(SURNAME));%>
-<%request.getSession().setAttribute(NUMBER_OF_PHONE, request.getAttribute(NUMBER_OF_PHONE));%>
+<%request.getSession().setAttribute(TEL_NUMBER, request.getAttribute(TEL_NUMBER));%>
 <%request.getSession().setAttribute(DISTANCE, request.getAttribute(DISTANCE));%>
 <%request.getSession().setAttribute(VOLUME, request.getAttribute(VOLUME));%>
 <%request.getSession().setAttribute(OBJECT_NAME, request.getAttribute(OBJECT_NAME));%>

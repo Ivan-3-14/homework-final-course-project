@@ -5,6 +5,7 @@
 <%@ page import="static application.utils.constant.ConstantsContainer.DISTANCE" %>
 <%@ page import="static application.utils.constant.ConstantsContainer.VOLUME" %>
 <%@ page import="static application.utils.constant.ConstantsContainer.OBJECT_NAME" %>
+<%@ page import="application.utils.enums.roles.Roles" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 <title>Форма заказа</title>
@@ -27,7 +28,7 @@
     if (request.getSession().getAttribute(INCORRECT_D_T) != null) {
         request.setAttribute(NAME, request.getSession().getAttribute(NAME));
         request.setAttribute(SURNAME, request.getSession().getAttribute(SURNAME));
-        request.setAttribute(NUMBER_OF_PHONE, request.getSession().getAttribute(NUMBER_OF_PHONE));
+        request.setAttribute(TEL_NUMBER, request.getSession().getAttribute(TEL_NUMBER));
         request.setAttribute(DISTANCE, request.getSession().getAttribute(DISTANCE));
         request.setAttribute(VOLUME, request.getSession().getAttribute(VOLUME));
         request.setAttribute(OBJECT_NAME, request.getSession().getAttribute(OBJECT_NAME));
@@ -97,7 +98,7 @@
 
     <label>
         Имя заказчика
-        <%if (userDTO != null) {%>
+        <%if (userDTO != null && !Roles.MANAGER.equals(userDTO.getRole())) {%>
         <input type="text" style="width: 200px; height: 35px; text-align:center; margin-left: 125px"
                name="name" value="<%=userDTO.getName()%>" placeholder=<%=userDTO.getName()%>>
             <% } else {%>
@@ -118,7 +119,7 @@
 
     <label>
         Фамилия заказчика
-        <%if (userDTO != null) {%>
+        <%if (userDTO != null && !Roles.MANAGER.equals(userDTO.getRole())) {%>
         <input type="text" style="width: 200px; height: 35px; text-align:center; margin-left: 91.5px"
                name="surname" value="<%=userDTO.getSurname()%>" placeholder=<%=userDTO.getSurname()%>>
         <% } else {%>
@@ -140,13 +141,13 @@
     </br>
     <label>
         Номер телефона
-        <%if (userDTO != null) {%>
+        <%if (userDTO != null && !Roles.MANAGER.equals(userDTO.getRole())) { %>
         <input type="text" style="width: 200px; height: 35px; text-align:center; margin-left: 111.5px"
-               name="numberOfPhone" value="<%=userDTO.getTelephoneNumber()%>" placeholder="<%=userDTO.getTelephoneNumber()%>">
+               name="telephoneNumber" value="<%=userDTO.getTelephoneNumber()%>" placeholder="<%=userDTO.getTelephoneNumber()%>">
         <% } else {%>
         <input type="text" style="width: 200px; height: 35px; text-align:center; margin-left: 111.5px"
-               name="numberOfPhone"
-               value="<%=request.getAttribute(NUMBER_OF_PHONE) != null ? request.getAttribute(NUMBER_OF_PHONE) : ""%>"
+               name="telephoneNumber"
+               value="<%=request.getAttribute(TEL_NUMBER) != null ? request.getAttribute(TEL_NUMBER) : ""%>"
                placeholder="Номер телефона"/>
         <% }%>
     </label>

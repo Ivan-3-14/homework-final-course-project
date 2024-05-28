@@ -10,10 +10,7 @@ import application.entity.enums.grades.GradesConcrete;
 import application.entity.enums.waterproof.Waterproof;
 import application.entity.object.BuildingObject;
 import application.entity.order.Order;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,13 +31,18 @@ public class ConcreteGradeDTO {
 
     private FrostResistance frostResistance;
 
+    @ToString.Exclude
     private Set<Order> orderSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<Concrete> concretesSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<ConcretePrice> concretePriceSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<Mobility> mobilitySet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<BuildingObject> objectSet = new HashSet<>();
 }

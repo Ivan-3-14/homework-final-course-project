@@ -15,4 +15,18 @@ public enum OrderStatus {
     public String getStatus() {
         return status;
     }
+
+    public static String getOrderStatusFromStringStatus(String search) {
+        String result = null;
+        switch (search) {
+            case "новый" : result = "NEW";
+            break;
+            case "в работе" : result = "IN_WORK";
+            break;
+            case  "закрыт" : result = "CLOSED";
+            break;
+            default:
+        }
+        return result;
+    }
 }

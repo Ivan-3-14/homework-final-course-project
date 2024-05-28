@@ -55,10 +55,12 @@ public class ChangePassword extends HttpServlet {
             changeUser.setPassword(newPass);
             UserDTO newUser = userService.updateUserPassword(changeUser);
 
-            int managerDTOId = (Integer) req.getSession().getAttribute(MANAGER_ID);
-            ManagerDTO managerDTO = managerService.readManager(managerDTOId);
-            managerDTO.setUser(newUser);
-            newUser.setManager(managerDTO);
+            if (Roles.MANAGER.equals(newUser.getRole())) {
+                int managerDTOId = (Integer) req.getSession().getAttribute(MANAGER_ID);
+                ManagerDTO managerDTO = managerService.readManager(managerDTOId);
+                managerDTO.setUser(newUser);
+                newUser.setManager(managerDTO);
+            }
 
             req.getSession().setAttribute(CURRENT, newUser);
             req.getSession().setAttribute(PASSWORD, newUser.getPassword());
@@ -66,7 +68,7 @@ public class ChangePassword extends HttpServlet {
             if (Roles.USER.equals(newUser.getRole())) {
                 getServletContext().getRequestDispatcher(MAIN_PAGE_USER_JSP).forward(req, resp);
             } else  if (Roles.ADMIN.equals(newUser.getRole())) {
-                getServletContext().getRequestDispatcher(MAIN_PAGE_ADMIN_JSP).forward(req, resp);
+                getServletContext().getRequestDispatcher(ADMIN_MAIN_PAGE).forward(req, resp);
             } else {
                 getServletContext().getRequestDispatcher(MAIN_PAGE_MANAGER_JSP).forward(req, resp);
             }

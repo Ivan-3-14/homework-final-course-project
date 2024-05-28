@@ -24,14 +24,12 @@ public class AutoCapacity {
     @Column(name = "auto_capacity")
     private Integer autoCapacity;
 
-    @Column(name = "delivery_coeff")
-    private Integer deliveryCoefficient;
-
-    @Column(name = "del_coeff_aft50")
-    private Integer deliveryCoefficientAft50;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "delivery_id")
+    private DeliveryCoefficient deliveryCoefficient;
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "auto_price_id")
     private AutoPrice autoPrice;
 

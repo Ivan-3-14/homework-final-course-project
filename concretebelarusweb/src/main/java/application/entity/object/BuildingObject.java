@@ -39,9 +39,8 @@ public class BuildingObject {
     @OneToMany(mappedBy = "buildingObject")
     private Set<Order> orderSet = new HashSet<>();
 
-    @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 }

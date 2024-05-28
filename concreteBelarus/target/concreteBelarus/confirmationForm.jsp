@@ -1,5 +1,6 @@
 <%@ page import="application.servicelevel.DTO.usersDTO.UserDTO" %>
 <%@ page import="application.servicelevel.DTO.orderDTO.OrderDTO" %>
+<%@ page import="application.utils.enums.roles.Roles" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -19,10 +20,24 @@
 
 <body>
 <% UserDTO userDTO = (UserDTO) request.getSession().getAttribute("current"); %>
-<%if (userDTO != null) {%>
+
+<%if (userDTO != null) { %>
+
+<% if (Roles.USER.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
    href='${pageContext.request.contextPath}/mainPageForUser.jsp'> Мой аккаунт
-</a><%}%>
+</a>
+<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
+</a>
+<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/adminMyself'> Мой аккаунт
+</a>
+<% }
+}%>
+
 <% OrderDTO orderDTO = (OrderDTO) request.getSession().getAttribute("currentOrder");%>
 
 <h3 style="margin-left: 255px"> Информация о заказе </h3>
@@ -98,7 +113,7 @@
 <div>
 <%if (userDTO != null) {%>
 <button
-        onclick="location.href='${pageContext.request.contextPath}/mainPageForUser.jsp';"> Подтвердить заказ
+        onclick="location.href='${pageContext.request.contextPath}/personalAccount.jsp';"> Подтвердить заказ
 </button>
 <% } else {%>
 <button

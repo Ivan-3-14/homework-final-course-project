@@ -4,9 +4,9 @@ import application.DTO.concreteDTO.ConcreteDTO;
 import application.DTO.concreteDTO.ConcreteGradeDTO;
 import application.DTO.orderDTO.OrderDTO;
 import application.DTO.usersDTO.UserDTO;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,12 +24,13 @@ public class BuildingObjectDTO {
     @NotNull
     private Double distanceToObject;
 
-    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private UserDTO user;
 
+    @ToString.Exclude
     private Set<ConcreteDTO> concretesSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<ConcreteGradeDTO> concreteGradeSet = new HashSet<>();
 
     @ToString.Exclude

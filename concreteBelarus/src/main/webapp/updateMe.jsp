@@ -1,4 +1,5 @@
 <%@ page import="application.servicelevel.DTO.usersDTO.UserDTO" %>
+<%@ page import="application.utils.enums.roles.Roles" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 
@@ -34,12 +35,23 @@
 </head>
 <jsp:include page="allPageHeader.jsp"/>
 
-<%UserDTO userDTO = (UserDTO) request.getSession().getAttribute("current");%>
+<%UserDTO userDTO = (UserDTO) request.getSession().getAttribute("current");
+if (userDTO != null) { %>
 
 <body>
+<% if (Roles.USER.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
    href='${pageContext.request.contextPath}/mainPageForUser.jsp'> Мой аккаунт
 </a>
+<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
+</a>
+<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/adminMyself'> Мой аккаунт
+</a>
+<% } %>
 <h2>введите новые данные, где необходимо</h2>
 <div>
     <form style="margin-left: 40%; margin-top: -1vw; width: 21vw; margin-bottom: -1vw; display: block;"
@@ -94,6 +106,7 @@
     </form>
 
 </div>
+<% } %>
 </body>
 <jsp:include page="forAllPage.jsp"/>
 </html>

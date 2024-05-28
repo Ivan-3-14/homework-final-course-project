@@ -14,14 +14,14 @@ public class ApplicationException {
                                            HttpServletResponse resp,
                                            String name,
                                            String surname,
-                                           String numberOfPhone,
+                                           String telephoneNumber,
                                            String nameOfObject,
                                            String comment,
                                            String path
     ) throws ServletException, IOException {
         req.setAttribute(NAME, name);
         req.setAttribute(SURNAME, surname);
-        req.setAttribute(NUMBER_OF_PHONE, numberOfPhone);
+        req.setAttribute(TEL_NUMBER, telephoneNumber);
         req.setAttribute(OBJECT_NAME, nameOfObject);
         req.setAttribute(COMMENT, comment);
         req.setAttribute(WRONG_DIST_OR_VOL, true);
@@ -32,7 +32,7 @@ public class ApplicationException {
                                     HttpServletResponse resp,
                                     String name,
                                     String surname,
-                                    String numberOfPhone,
+                                    String telephoneNumber,
                                     String distanceToObject,
                                     String volumeOfConcrete,
                                     String nameOfObject,
@@ -41,7 +41,7 @@ public class ApplicationException {
     ) throws ServletException, IOException {
         req.setAttribute(NAME, name);
         req.setAttribute(SURNAME, surname);
-        req.setAttribute(NUMBER_OF_PHONE, numberOfPhone);
+        req.setAttribute(TEL_NUMBER, telephoneNumber);
         req.setAttribute(DISTANCE, distanceToObject);
         req.setAttribute(VOLUME, volumeOfConcrete);
         req.setAttribute(OBJECT_NAME, nameOfObject);
@@ -54,7 +54,7 @@ public class ApplicationException {
                               HttpServletResponse resp,
                               String name,
                               String surname,
-                              String numberOfPhone,
+                              String telephoneNumber,
                               String distanceToObject,
                               String volumeOfConcrete,
                               String nameOfObject,
@@ -62,7 +62,7 @@ public class ApplicationException {
                               String path) throws ServletException, IOException {
         req.setAttribute(NAME, name);
         req.setAttribute(SURNAME, surname);
-        req.setAttribute(NUMBER_OF_PHONE, numberOfPhone);
+        req.setAttribute(TEL_NUMBER, telephoneNumber);
         req.setAttribute(DISTANCE, distanceToObject);
         req.setAttribute(VOLUME, volumeOfConcrete);
         req.setAttribute(OBJECT_NAME, nameOfObject);
@@ -75,7 +75,7 @@ public class ApplicationException {
                               HttpServletResponse resp,
                               String name,
                               String surname,
-                              String numberOfPhone,
+                              String telephoneNumber,
                               String distanceToObject,
                               String volumeOfConcrete,
                               String nameOfObject,
@@ -83,7 +83,7 @@ public class ApplicationException {
                               String path) throws ServletException, IOException {
         req.setAttribute(NAME, name);
         req.setAttribute(SURNAME, surname);
-        req.setAttribute(NUMBER_OF_PHONE, numberOfPhone);
+        req.setAttribute(TEL_NUMBER, telephoneNumber);
         req.setAttribute(DISTANCE, distanceToObject);
         req.setAttribute(VOLUME, volumeOfConcrete);
         req.setAttribute(OBJECT_NAME, nameOfObject);

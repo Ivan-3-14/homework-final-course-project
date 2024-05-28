@@ -5,7 +5,7 @@ import application.entity.concreteentities.Mobility;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface MobilityMapper {
 
     @Mapping(target = "id")

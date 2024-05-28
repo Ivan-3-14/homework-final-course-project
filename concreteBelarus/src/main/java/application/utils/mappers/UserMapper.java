@@ -5,7 +5,7 @@ import application.servicelevel.DTO.usersDTO.UserDTO;
 
 public class UserMapper implements Mapper<UserDTO, User> {
 
-    private final ManagerMapper managerMapper = new ManagerMapper();
+    private final ManagerForUserMapper managerForUserMapper = new ManagerForUserMapper();
 
     @Override
     public User dtoToEntity(UserDTO userDTO) {
@@ -20,7 +20,7 @@ public class UserMapper implements Mapper<UserDTO, User> {
                 .surname(userDTO.getSurname())
                 .telephoneNumber(userDTO.getTelephoneNumber())
                 .role(userDTO.getRole())
-                .manager(managerMapper.dtoToEntity(userDTO.getManager()))
+                .manager(managerForUserMapper.dtoToEntity(userDTO.getManager()))
                 .build();
     }
 
@@ -37,7 +37,7 @@ public class UserMapper implements Mapper<UserDTO, User> {
                 .surname(user.getSurname())
                 .telephoneNumber(user.getTelephoneNumber())
                 .role(user.getRole())
-                .manager(managerMapper.entityToDTO(user.getManager()))
+                .manager(managerForUserMapper.entityToDTO(user.getManager()))
                 .build();
     }
 }

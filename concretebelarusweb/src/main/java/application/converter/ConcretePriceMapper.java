@@ -5,7 +5,7 @@ import application.entity.concreteentities.ConcretePrice;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ConcretePriceMapper {
 
     @Mapping(target = "id")

@@ -1,6 +1,5 @@
 <%@ page import="java.util.List" %>
 <%@ page import="application.servicelevel.DTO.orderDTO.OrderDTO" %>
-<%@ page import="static application.utils.constant.ConstantsContainer.ROW_IN_PAGE_ORDERS" %>
 <%@ page import="static application.utils.constant.ConstantsContainer.CURRENT_PAGE" %>
 <%@ page import="application.utils.enums.orderstatus.OrderStatus" %>
 <%@ page import="static application.utils.constant.ConstantsContainer.*" %>
@@ -80,9 +79,9 @@
         </td>
         <% if (OrderStatus.CLOSED != temp.getOrderStatus()) {
         %>
-        <td>
+        <td style="border: none">
             <form style="margin: 2px" action="${pageContext.request.contextPath}/updateOrderList" method="get">
-            <button>
+            <button style="color: blue">
             <input type='hidden' name="tempOrderID" value="<%=temp.getId()%>">
                 Изменить заказ
             </button>

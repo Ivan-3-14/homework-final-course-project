@@ -38,6 +38,7 @@ public class ConstantsContainer {
     public static final String TEL_NUMBER = "telephoneNumber";
     public static final String WRONG = "wrong";
     public static final String CURRENT = "current";
+    public static final String CURRENT_MANAGER = "currentManager";
     public static final String CURRENT_ORDER = "currentOrder";
     public static final String CURRENT_PAGE = "currentPage";
     public static final String CURRENT_ORDER_ID = "currentOrderId";
@@ -62,6 +63,7 @@ public class ConstantsContainer {
     public static final String ORDER_FORM_JSP = "/orderForm.jsp";
     public static final String CONFIRMATION = "/confirmation";
     public static final String ORDER_UPDATE_JSP = "/orderUpdate.jsp";
+    public static final String MANAGER_UPDATE_JSP = "/updateManager.jsp";
     public static final String MAIN_PAGE_USER_JSP = "/mainPageForUser.jsp";
     public static final String MAIN_PAGE_ADMIN_JSP = "/mainPageForAdmin.jsp";
     public static final String MAIN_PAGE_MANAGER_JSP = "/mainPageForManager.jsp";
@@ -69,8 +71,11 @@ public class ConstantsContainer {
     public static final String INCORRECT_TIME_OR_DATE = "/incorrectDateTime.jsp";
     public static final String FORGOT_PASSWORD_JSP = "/forgotPassword.jsp";
     public static final String CHANGE_PASSWORD_JSP = "/changePassword.jsp";
+    public static final String VERIFY_PASSWORD_JSP = "/verifyPassword.jsp";
+    public static final String CREATE_MANAGER_FORM_JSP = "/createManagerForm.jsp";
+    public static final String CHANGE_PRICE_JSP = "/changePrices.jsp";
+    public static final String ADMIN_MAIN_PAGE = "/adminMyself";
 
-    public static final String NUMBER_OF_PHONE = "numberOfPhone";
     public static final String AGGREGATE = "aggregate";
     public static final String GRADE = "concreteGrade";
     public static final String MOBILITY = "mobility";
@@ -85,6 +90,11 @@ public class ConstantsContainer {
     public static final String WRONG_TIME_OR_DATE = "wrongTimeOrDate";
     public static final String INCORRECT_D_T = "incorrectDT";
     public static final String MANAGER_ID = "managerId";
+    public static final String CONCRETE_PRICE = "concretePrice";
+    public static final String AUTO_PRICE = "autoPrice";
+    public static final String TEMP_AUTO_PRICE_ID = "tempAutoPriceID";
+    public static final String TEMP_CONCRETE_PRICE_ID = "tempConcretePriceID";
+    public static final String ALL_MANAGER_LIST = "allManagerList";
 
     public static final String FIND_ALL_ORDERS = "FROM Order o where o.user=";
 
@@ -92,12 +102,14 @@ public class ConstantsContainer {
     public static final String BY_PASSWORD_USER_NOT_FOUND = "BY_PASSWORD_USER_NOT_FOUND";
     public static final String BY_EMAIL_AND_PASSWORD_USER_NOT_FOUND = "BY_EMAIL_AND_PASSWORD_USER_NOT_FOUND";
     public static final String THIS_SUPER_USER_NOT_FOUND = "THIS_SUPER_USER_NOT_FOUND";
+    public static final String MANAGER_NOT_FOUND = "MANAGER_NOT_FOUND";
     public static final String MY_DATE_FORMAT = "yyyy-MM-dd";
     public static final String MY_TIME_FORMAT = "hh:mm";
     public static final String BY_CONCRETE_AND_GRADE_THIS_PRICE_NOT_FOUND = "BY_CONCRETE_AND_GRADE_THIS_PRICE_NOT_FOUND";
 
     public static final String GET_USER_BY_EMAIL_QUERY = "select * from user where email = '";
     public static final String GET_USER_BY_PASSWORD_QUERY = "select * from user where password = '";
+    public static final String GET_USER_BY_MANAGER_QUERY = "select * from user where role = 'MANAGER'";
     public static final String END_QUERY = "'";
     public static final String END_QUERY2 = "';";
     public static final String AND_PASSWORD = "' and password ='";

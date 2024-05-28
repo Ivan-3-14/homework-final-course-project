@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AutoPriceDAO extends DAO<AutoPrice> {
 
-    List<Double> getAllAutoPrice();
+    List<AutoPrice> getAllAutoPrice();
 
     Double getAutoPriceByMobilityAndVolumeOfConcrete(Mobility mobility, Double volume, Double distance);
 

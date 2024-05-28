@@ -1,5 +1,6 @@
 <%@ page import="application.servicelevel.DTO.usersDTO.UserDTO" %>
 <%@ page import="application.servicelevel.DTO.orderDTO.OrderDTO" %>
+<%@ page import="application.utils.enums.roles.Roles" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 <title>Форма заказа</title>
@@ -14,9 +15,19 @@
 
 <body>
 <%if (userDTO != null) {%>
+<% if (Roles.USER.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
    href='${pageContext.request.contextPath}/mainPageForUser.jsp'> Мой аккаунт
 </a>
+<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
+</a>
+<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}/adminMyself'> Мой аккаунт
+</a>
+<% } %>
 <%}%>
 
 <% OrderDTO orderDTO = (OrderDTO) request.getSession().getAttribute("currentOrder");
@@ -24,7 +35,7 @@ if (orderDTO != null) {
         request.setAttribute("currentOrderId", orderDTO.getId());
     %>
 <form style="margin-left: 20%; margin-top: 40px; width: 80%; display: block;"
-      method="post" action="${pageContext.request.contextPath}/updateOrder" >
+       action="${pageContext.request.contextPath}/orderUpdate" method="post">
 
     <label>
         Наименование объекта
@@ -120,7 +131,7 @@ if (orderDTO != null) {
     <label>
         Номер телефона
         <input type="text" style="width: 200px; height: 35px; text-align:center; margin-left: 111.5px"
-               name="numberOfPhone" value="<%=orderDTO.getUserDTO().getTelephoneNumber()%>">
+               name="telephoneNumber" value="<%=orderDTO.getUserDTO().getTelephoneNumber()%>">
     </label>
     <label>
     <input type="text" style="width: 420px; height: 38px; text-align:center; margin-left: 40px"
@@ -128,7 +139,8 @@ if (orderDTO != null) {
     value="<%=orderDTO.getComment()%>"/>
     </label>
     </br>
-    <input style="width: 150px; height: 25px; text-align:center; margin-top: 12px; margin-left: 740px;" type="submit">
+    <input style="width: 150px; height: 25px; text-align:center; margin-top: 12px; margin-left: 740px;"
+           type="submit">
 </form>
 <% } %>
 

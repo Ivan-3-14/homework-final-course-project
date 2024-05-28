@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
 
+    //TODO delete
 }

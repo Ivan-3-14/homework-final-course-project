@@ -16,5 +16,7 @@ public interface UserDAO extends DAO<User> {
 
     User getSuperUserByPhoneNumber(String phoneNumber);
 
+    List<User> getAllUserWithRoleManager();
+
     EntityManager getEntityManager();
 }

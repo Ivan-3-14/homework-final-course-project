@@ -1,6 +1,6 @@
 package application.servicelevel.services.impl;
 
-import application.datalevel.DAO.implementations.object.BuildingObjectImpl;
+import application.datalevel.DAO.implementations.object.BuildingObjectDAOImpl;
 import application.datalevel.DAO.interfaces.object.BuildingObjectDAO;
 import application.datalevel.entities.object.BuildingObject;
 import application.servicelevel.DTO.objectDTO.BuildingObjectDTO;
@@ -17,7 +17,7 @@ import static application.utils.constant.ConstantsContainer.*;
 
 public class BuildingObjectService implements BuildingObjectServiceInt {
 
-    private final BuildingObjectDAO buildingObjectImpl = new BuildingObjectImpl();
+    private final BuildingObjectDAO buildingObjectImpl = new BuildingObjectDAOImpl();
     private final BuildingObjectMapper buildingObjectMapper = new BuildingObjectMapper();
 
     // check if exist

@@ -1,6 +1,7 @@
 package application.DTO.autoDTO;
 
 import application.entity.autotransportation.AutoPrice;
+import application.entity.autotransportation.DeliveryCoefficient;
 import application.entity.enums.cartype.CarType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ public class AutoCapacityDTO {
 
     private Integer autoCapacity;
 
-    private Integer deliveryCoefficient;
+    private DeliveryCoefficient deliveryCoefficient;
 
     private AutoPrice autoPrice;
 }

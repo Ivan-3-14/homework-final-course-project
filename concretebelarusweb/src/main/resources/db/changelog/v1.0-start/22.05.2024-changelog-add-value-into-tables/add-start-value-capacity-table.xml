@@ -3,36 +3,31 @@
         <insert tableName="capacity">
             <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
             <column name="auto_capacity" value="8"/>
-            <column name="delivery_coeff" value="4"/>
-            <column name="del_coeff_aft50" value="5"/>
+            <column name="delivery_id" value="1"/>
             <column name="auto_price_id" value="1"/>
         </insert>
         <insert tableName="capacity">
             <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
             <column name="auto_capacity" value="9"/>
-            <column name="delivery_coeff" value="4"/>
-            <column name="del_coeff_aft50" value="5"/>
+            <column name="delivery_id" value="1"/>
             <column name="auto_price_id" value="2"/>
         </insert>
         <insert tableName="capacity">
             <column name="car_type" value="CONCRETE_MIXER_TRUCK"/>
             <column name="auto_capacity" value="10"/>
-            <column name="delivery_coeff" value="4"/>
-            <column name="del_coeff_aft50" value="5"/>
+            <column name="delivery_id" value="1"/>
             <column name="auto_price_id" value="3"/>
         </insert>
         <insert tableName="capacity">
             <column name="car_type" value="DUMP_TRUCK"/>
             <column name="auto_capacity" value="4"/>
-            <column name="delivery_coeff" value="3"/>
-            <column name="del_coeff_aft50" value="4"/>
+            <column name="delivery_id" value="1"/>
             <column name="auto_price_id" value="4"/>
         </insert>
         <insert tableName="capacity">
             <column name="car_type" value="DUMP_TRUCK"/>
             <column name="auto_capacity" value="8"/>
-            <column name="delivery_coeff" value="4"/>
-            <column name="del_coeff_aft50" value="5"/>
+            <column name="delivery_id" value="1"/>
             <column name="auto_price_id" value="5"/>
         </insert>
     </changeSet>

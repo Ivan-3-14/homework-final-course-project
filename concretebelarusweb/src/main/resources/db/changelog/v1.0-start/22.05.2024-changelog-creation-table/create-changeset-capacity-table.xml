@@ -7,13 +7,12 @@
             </column>
             <column name="car_type" type="varchar(200)" />
             <column name="auto_capacity" type="int" />
-            <column name="delivery_coeff" type="int" />
-            <column name="del_coeff_aft50" type="int" />
+            <column name="delivery_id" type="bigint" />
             <column name="auto_price_id" type="bigint" />
         </createTable>
     </changeSet>
 
-    <changeSet id="add-foreign-key-constraint-to-capacity" author="ivan">
+    <changeSet id="add-foreign-key-constraint-auto-price-to-capacity" author="ivan">
         <addForeignKeyConstraint
                 baseColumnNames="auto_price_id"
                 baseTableName="capacity"
@@ -23,6 +22,20 @@
                 onDelete="NO ACTION"
                 referencedColumnNames="id"
                 referencedTableName="auto_price"
+                referencedTableCatalogName="c_b_web"
+                referencedTableSchemaName="c_b_web"
+        />
+    </changeSet>
+    <changeSet id="add-foreign-key-delivery-to-capacity" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="delivery_id"
+                baseTableName="capacity"
+                baseTableCatalogName="c_b_web"
+                constraintName="fk_grade_delivery_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="delivery_coefficient"
                 referencedTableCatalogName="c_b_web"
                 referencedTableSchemaName="c_b_web"
         />

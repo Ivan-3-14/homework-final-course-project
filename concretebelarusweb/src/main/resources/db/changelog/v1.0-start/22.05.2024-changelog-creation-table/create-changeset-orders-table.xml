@@ -103,7 +103,7 @@
                 baseTableCatalogName="c_b_web"
                 constraintName="fk_manager_id_to_orders"
                 onUpdate="CASCADE"
-                onDelete="NO ACTION"
+                onDelete="CASCADE"
                 referencedColumnNames="id"
                 referencedTableName="manager"
                 referencedTableCatalogName="c_b_web"

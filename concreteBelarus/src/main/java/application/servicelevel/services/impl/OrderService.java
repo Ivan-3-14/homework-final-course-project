@@ -1,9 +1,9 @@
 package application.servicelevel.services.impl;
 
-import application.datalevel.DAO.implementations.auto.AutoPriceImpl;
-import application.datalevel.DAO.implementations.order.OrderImpl;
-import application.datalevel.DAO.implementations.concrete.ConcretePriceImpl;
-import application.datalevel.DAO.implementations.concrete.MobilityImpl;
+import application.datalevel.DAO.implementations.auto.AutoPriceDAOImpl;
+import application.datalevel.DAO.implementations.order.OrderDAOImpl;
+import application.datalevel.DAO.implementations.concrete.ConcretePriceDAOImpl;
+import application.datalevel.DAO.implementations.concrete.MobilityDAOImpl;
 import application.datalevel.DAO.interfaces.auto.AutoPriceDAO;
 import application.datalevel.DAO.interfaces.order.OrderDAO;
 import application.datalevel.DAO.interfaces.concrete.ConcretePriceDAO;
@@ -28,12 +28,12 @@ import static application.utils.constant.ConstantsContainer.*;
 
 public class OrderService implements OrderServiceInt {
 
-    private final OrderDAO orderDAOImpl = new OrderImpl();
+    private final OrderDAO orderDAOImpl = new OrderDAOImpl();
     private final OrderMapper orderMapper = new OrderMapper();
-    private final MobilityDAO mobilityDAOImpl = new MobilityImpl();
+    private final MobilityDAO mobilityDAOImpl = new MobilityDAOImpl();
     private final BuildingObjectService buildingObjectService = new BuildingObjectService();
-    private final ConcretePriceDAO concretePriceDAOImpl = new ConcretePriceImpl();
-    private final AutoPriceDAO autoPriceDAOImpl = new AutoPriceImpl();
+    private final ConcretePriceDAO concretePriceDAOImpl = new ConcretePriceDAOImpl();
+    private final AutoPriceDAO autoPriceDAOImpl = new AutoPriceDAOImpl();
     private final UserServiceInt userService = new UserService();
 
     public OrderDTO creatOrder(OrderDTO orderDTO) {

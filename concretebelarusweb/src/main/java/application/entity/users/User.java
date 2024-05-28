@@ -4,6 +4,7 @@ import application.entity.enums.roles.Roles;
 import application.entity.object.BuildingObject;
 import application.entity.order.Order;
 import lombok.*;
+import org.mapstruct.Mapping;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -53,6 +54,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Order> orderSet = new HashSet<>();
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "user")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER, mappedBy = "user")
     private Manager manager;
 }

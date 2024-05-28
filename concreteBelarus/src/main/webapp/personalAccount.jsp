@@ -22,7 +22,7 @@
 </a>
 <% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/mainPageForAdmin.jsp'> Мой аккаунт
+   href='${pageContext.request.contextPath}/adminMyself'> Мой аккаунт
 </a>
 <% } %>
 

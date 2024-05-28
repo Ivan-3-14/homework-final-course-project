@@ -29,4 +29,20 @@ public enum Aggregate {
         }
         return result;
     }
+
+    public static String getStringAggregate(String value) {
+        String result;
+        switch (value) {
+            case "щебень":
+                result = "CRUSHED_STONE";
+                break;
+            case "гравий":
+                result = "GRAVEL";
+                break;
+            default:
+                result = null;
+        }
+        return result;
+    }
+
 }

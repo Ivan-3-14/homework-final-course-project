@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ConcretePriceDAO extends DAO<ConcretePrice> {
 
-    List<Double> getAllConcretePrice();
+    List<ConcretePrice> getAllConcretePrice();
 
     Double getConcretePriceByConcreteAndGrade(int concreteId, int concreteGradeId);
 

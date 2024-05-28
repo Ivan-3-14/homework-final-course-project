@@ -9,6 +9,7 @@
 
 <style>
     body { background: #F4F1F5}
+    a {font-size: 16px; color: mediumblue;  float: left; vertical-align: bottom;}
 </style>
 
 <jsp:include page="allPageHeader.jsp"/>
@@ -16,20 +17,20 @@
 <body>
 </br>
 
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/myAccount'> Мой профиль
+<a href='${pageContext.request.contextPath}/myAccount'> Мой профиль
 </a>
 </br>
 </br>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/myOrders'> Создать нового менеджера
+<a href='${pageContext.request.contextPath}/orderForm.jsp'> Создать новую заявку
 </a>
 </br>
 </br>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/myObjects'> Добавить марку бетона
+<a href='${pageContext.request.contextPath}/myObjects'> Все пользователи
 </a>
 </br>
+<a href='${pageContext.request.contextPath}/changePrices.jsp'> Изменить цены
+</a>
 </body>
+</br>
 <jsp:include page="forAllPage.jsp"/>
 </html>

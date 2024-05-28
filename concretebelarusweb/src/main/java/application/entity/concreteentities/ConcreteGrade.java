@@ -68,7 +68,7 @@ public class ConcreteGrade {
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "object_concrete_grade",
             joinColumns = {@JoinColumn(name = "concrete_grade_id")},
             inverseJoinColumns = {@JoinColumn(name = "object_id")})

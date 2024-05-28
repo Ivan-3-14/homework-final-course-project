@@ -47,8 +47,6 @@ public class UpdateMyself extends HttpServlet {
                 role = user.getRole();
             }
 
-            System.out.println("                  " + user.getManager());
-
             UserDTO userDTO = UserDTO.builder()
                     .name(name)
                     .surname(surname)
@@ -61,13 +59,8 @@ public class UpdateMyself extends HttpServlet {
             UserDTO result = userService.updateUser(user.getId(), userDTO);
 
             req.getSession().setAttribute(CURRENT, result);
-            if (Roles.MANAGER.equals(result.getRole())) {
-                    getServletContext().getRequestDispatcher(MAIN_PAGE_MANAGER_JSP).forward(req, resp);
-            } else if (Roles.USER.equals(result.getRole())) {
-                getServletContext().getRequestDispatcher(MAIN_PAGE_USER).forward(req, resp);
-            } else  if (Roles.ADMIN.equals(result.getRole())) {
-                getServletContext().getRequestDispatcher(MAIN_PAGE_ADMIN_JSP).forward(req, resp);
-            }
+
+            getServletContext().getRequestDispatcher(PER_ACCOUNT).forward(req, resp);
         }
     }
 }

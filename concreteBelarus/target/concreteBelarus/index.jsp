@@ -1,12 +1,14 @@
 <%@ page import="application.datalevel.DAO.interfaces.concrete.ConcretePriceDAO" %>
-<%@ page import="application.datalevel.DAO.implementations.concrete.ConcretePriceImpl" %>
+<%@ page import="application.datalevel.DAO.implementations.concrete.ConcretePriceDAOImpl" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.datalevel.DAO.interfaces.auto.AutoPriceDAO" %>
-<%@ page import="application.datalevel.DAO.implementations.auto.AutoPriceImpl" %>
+<%@ page import="application.datalevel.DAO.implementations.auto.AutoPriceDAOImpl" %>
 <%@ page import="application.datalevel.DAO.interfaces.auto.AutoCapacityDAO" %>
-<%@ page import="application.datalevel.DAO.implementations.auto.AutoCapacityImpl" %>
+<%@ page import="application.datalevel.DAO.implementations.auto.AutoCapacityDAOImpl" %>
 <%@ page import="application.servicelevel.DTO.usersDTO.UserDTO" %>
 <%@ page import="application.utils.enums.roles.Roles" %>
+<%@ page import="application.datalevel.entities.concreteentities.ConcretePrice" %>
+<%@ page import="application.datalevel.entities.autotransportation.AutoPrice" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -126,12 +128,12 @@
     <h4 style="float: left; padding-left: 600px;"> Стоимость доставки </h4>
     <div style="clear: left"></div>
 
-<% ConcretePriceDAO concretePriceDAO = new ConcretePriceImpl();
-    AutoPriceDAO autoPriceDAO = new AutoPriceImpl();
-    AutoCapacityDAO autoCapacityDAO = new AutoCapacityImpl();
+<% ConcretePriceDAO concretePriceDAO = new ConcretePriceDAOImpl();
+    AutoPriceDAO autoPriceDAO = new AutoPriceDAOImpl();
+    AutoCapacityDAO autoCapacityDAO = new AutoCapacityDAOImpl();
 
-    List<Double> concretePrice = concretePriceDAO.getAllConcretePrice();
-    List<Double> autoPrice = autoPriceDAO.getAllAutoPrice();
+    List<ConcretePrice> concretePrice = concretePriceDAO.getAllConcretePrice();
+    List<AutoPrice> autoPrice = autoPriceDAO.getAllAutoPrice();
 %>
 <table style="float: left; margin-right: 50px; margin-left: 50px;">
     <thead >
@@ -144,43 +146,43 @@
     <tbody>
     <tr>
         <td>М150 (С8/10)</td>
-        <td><%=concretePrice.get(0)%> руб </td>
-        <td><%=concretePrice.get(4)%> руб</td>
+        <td><%=concretePrice.get(0).getPrice()%> руб </td>
+        <td><%=concretePrice.get(4).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М200 (С12/15)</td>
-        <td><%=concretePrice.get(1)%> руб</td>
-        <td><%=concretePrice.get(5)%> руб</td>
+        <td><%=concretePrice.get(1).getPrice()%> руб</td>
+        <td><%=concretePrice.get(5).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М250 (С16/20)</td>
-        <td><%=concretePrice.get(2)%> руб</td>
-        <td><%=concretePrice.get(6)%> руб</td>
+        <td><%=concretePrice.get(2).getPrice()%> руб</td>
+        <td><%=concretePrice.get(6).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М300 (С18/22,5)</td>
-        <td><%=concretePrice.get(3)%> руб</td>
-        <td><%=concretePrice.get(7)%> руб</td>
+        <td><%=concretePrice.get(3).getPrice()%> руб</td>
+        <td><%=concretePrice.get(7).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М350 (С20/25)</td>
         <td>-</td>
-        <td><%=concretePrice.get(8)%> руб</td>
+        <td><%=concretePrice.get(8).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М400 (С25/30)</td>
         <td>-</td>
-        <td><%=concretePrice.get(9)%> руб</td>
+        <td><%=concretePrice.get(9).getPrice()%> руб</td>
     </tr>
     <tr>
         <td>М450 (С27/32)</td>
         <td>-</td>
-        <td><%=concretePrice.get(10)%> руб</td>
+        <td><%=concretePrice.get(10).getPrice()%> руб</td>
     </tr>
     <tr>
-        <td>М500 (С30/35)</td>
+        <td>М500 (С30/37)</td>
         <td>-</td>
-        <td><%=concretePrice.get(11)%> руб</td>
+        <td><%=concretePrice.get(11).getPrice()%> руб</td>
     </tr>
     </tbody>
 </table>
@@ -196,23 +198,23 @@
     <tbody>
     <tr>
         <td>По Минску (в пределах МКАД)</td>
-        <td><%=autoPrice.get(0)%> руб/миксер до 8м3 </td>
+        <td><%=autoPrice.get(0).getPrice()%> руб/миксер до 8м3 </td>
     </tr>
     <tr>
         <td>По Минску (в пределах МКАД)</td>
-        <td><%=autoPrice.get(1)%> руб/миксер 9м3 </td>
+        <td><%=autoPrice.get(1).getPrice()%> руб/миксер 9м3 </td>
     </tr>
     <tr>
         <td>По Минску (в пределах МКАД)</td>
-        <td><%=autoPrice.get(2)%> руб/миксер 10м3 </td>
+        <td><%=autoPrice.get(2).getPrice()%> руб/миксер 10м3 </td>
     </tr>
     <tr>
         <td>По Минску (в пределах МКАД)</td>
-        <td><%=autoPrice.get(3)%> руб/самосвал 10т</td>
+        <td><%=autoPrice.get(3).getPrice()%> руб/самосвал 10т</td>
     </tr>
     <tr>
         <td>По Минску (в пределах МКАД)</td>
-        <td><%=autoPrice.get(4)%> руб/самосвал 20т</td>
+        <td><%=autoPrice.get(4).getPrice()%> руб/самосвал 20т</td>
     </tr>
     <tr>
         <td>за МКАД (до 50км)</td>

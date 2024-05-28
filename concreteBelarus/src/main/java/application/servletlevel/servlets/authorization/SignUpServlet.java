@@ -54,7 +54,7 @@ public class SignUpServlet extends HttpServlet {
         } else if (Roles.USER.equals(userDTO.getRole())) {
             getServletContext().getRequestDispatcher(MAIN_PAGE_USER).forward(req, resp);
         } else  if (Roles.ADMIN.equals(userDTO.getRole())) {
-            getServletContext().getRequestDispatcher(MAIN_PAGE_ADMIN_JSP).forward(req, resp);
+            getServletContext().getRequestDispatcher(ADMIN_MAIN_PAGE).forward(req, resp);
         }
     }
 }

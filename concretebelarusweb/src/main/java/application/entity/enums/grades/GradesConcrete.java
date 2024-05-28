@@ -43,4 +43,28 @@ public enum GradesConcrete {
         }
         return result;
     }
+
+    public static String getStringGrade(String value) {
+        String result = null;
+        switch (value) {
+            case "М150" : result = "M150";
+                break;
+            case "М200" : result = "M200";
+                break;
+            case "М250" : result = "M250";
+                break;
+            case "М300" : result = "M300";
+                break;
+            case "М350" : result = "M350";
+                break;
+            case "М400" : result = "M400";
+                break;
+            case "М450": result = "M450";
+                break;
+            case "М500": result = "M500";
+                break;
+            default:
+        }
+        return result;
+    }
 }

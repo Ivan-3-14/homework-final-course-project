@@ -50,7 +50,7 @@ public class Order {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "concrete_id")
     private Concrete concrete;
 

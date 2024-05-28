@@ -15,6 +15,8 @@
              relativeToChangelogFile="true"/>
     <include file="add-start-value-auto-price-table.xml"
              relativeToChangelogFile="true"/>
+    <include file="add-start-value-delivery-coeff-table.xml"
+             relativeToChangelogFile="true"/>
     <include file="add-start-value-capacity-table.xml"
              relativeToChangelogFile="true"/>
 </databaseChangeLog>

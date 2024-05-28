@@ -21,13 +21,13 @@ public interface UserServiceInt {
 
     UserDTO getUserByLoginAndPassword(String email, String password);
 
-    UserDTO getUserByEmail(String email);
-
     UserDTO getUserByPassword(String password);
 
     boolean alreadyExists(UserDTO userDTO);
 
     UserDTO updateUserPassword(UserDTO userDTO);
+
+    UserDTO createNewManager(UserDTO userDTO, HttpServletRequest req, HttpServletResponse resp, String path) throws ServletException, IOException;
 
     UserDTO checkExistUser(UserDTO userDTO, String name, String surname, String numberOfPhone) throws ServletException, IOException;
 }

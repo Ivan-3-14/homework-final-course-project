@@ -55,6 +55,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Order> orderSet = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "user")
     private Manager manager;
 }

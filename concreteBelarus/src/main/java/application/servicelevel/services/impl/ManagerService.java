@@ -1,7 +1,7 @@
 package application.servicelevel.services.impl;
 
-import application.datalevel.DAO.implementations.order.OrderImpl;
-import application.datalevel.DAO.implementations.users.ManagerImpl;
+import application.datalevel.DAO.implementations.order.OrderDAOImpl;
+import application.datalevel.DAO.implementations.users.ManagerDAOImpl;
 import application.datalevel.DAO.interfaces.order.OrderDAO;
 import application.datalevel.DAO.interfaces.users.ManagerDAO;
 import application.datalevel.entities.order.Order;
@@ -10,7 +10,7 @@ import application.servicelevel.DTO.orderDTO.OrderDTO;
 import application.servicelevel.DTO.usersDTO.ManagerDTO;
 import application.utils.functionalinterface.MyInterfaceToDAO;
 import application.utils.functionalinterface.UtilsInterface;
-import application.utils.mappers.ManagerMapper;
+import application.utils.mappers.ManagerForUserMapper;
 import application.utils.mappers.OrderMapper;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.List;
 public class ManagerService {
 
     private static final ManagerService INSTANCE = new ManagerService();
-    private final OrderDAO orderDAOImpl = new OrderImpl();
+    private final OrderDAO orderDAOImpl = new OrderDAOImpl();
     private final OrderMapper orderMapper = new OrderMapper();
-    private final ManagerDAO managerDAOImpl = new ManagerImpl();
-    private final ManagerMapper managerMapper = new ManagerMapper();
+    private final ManagerDAO managerDAOImpl = new ManagerDAOImpl();
+    private final ManagerForUserMapper managerForUserMapper = new ManagerForUserMapper();
 
     private ManagerService() {
     }
@@ -32,7 +32,7 @@ public class ManagerService {
             if (manager == null) {
                 return null;
             }
-            return managerMapper.entityToDTO(manager);
+            return managerForUserMapper.entityToDTO(manager);
         };
         return UtilsInterface.superMethodInterface(betweenBeginAndCommitted, managerDAOImpl.getEntityManager());
     }

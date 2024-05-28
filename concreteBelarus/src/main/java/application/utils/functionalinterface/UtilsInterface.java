@@ -11,7 +11,7 @@ public class UtilsInterface {
         T result = null;
         try {
             result = method.betweenBeginAndCommitted();
-        } catch (ServletException | IOException e) {
+        } catch (ServletException | IOException | RuntimeException e) {
             entityManager.getTransaction().rollback();
         }
         entityManager.getTransaction().commit();

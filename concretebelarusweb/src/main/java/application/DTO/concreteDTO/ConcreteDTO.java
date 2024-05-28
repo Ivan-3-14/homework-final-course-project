@@ -5,10 +5,7 @@ import application.entity.concreteentities.ConcretePrice;
 import application.entity.enums.aggregate.Aggregate;
 import application.entity.object.BuildingObject;
 import application.entity.order.Order;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,11 +20,15 @@ public class ConcreteDTO {
 
     private Aggregate aggregate;
 
+    @ToString.Exclude
     private Set<Order> orderSet;
 
+    @ToString.Exclude
     private Set<ConcreteGrade> gradesSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<ConcretePrice> concretePriceSet = new HashSet<>();
 
+    @ToString.Exclude
     private Set<BuildingObject> objectSet = new HashSet<>();
 }

@@ -1,6 +1,6 @@
 package application.servicelevel.services.impl;
 
-import application.datalevel.DAO.implementations.users.UserImpl;
+import application.datalevel.DAO.implementations.users.UserDAOImpl;
 import application.datalevel.DAO.interfaces.users.UserDAO;
 import application.datalevel.entities.users.User;
 import application.servicelevel.DTO.usersDTO.ManagerDTO;
@@ -9,20 +9,23 @@ import application.servicelevel.services.interfaces.UserServiceInt;
 import application.utils.enums.roles.Roles;
 import application.utils.functionalinterface.MyInterfaceToDAO;
 import application.utils.functionalinterface.UtilsInterface;
-import application.utils.mappers.ManagerMapper;
+import application.utils.mappers.ManagerForUserMapper;
 import application.utils.mappers.UserMapper;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 import static application.utils.constant.ConstantsContainer.WRONG;
 
 public class UserService implements UserServiceInt {
 
-    private final UserDAO userDAOImpl = new UserImpl();
+    private final UserDAO userDAOImpl = new UserDAOImpl();
     private final UserMapper userMapper = new UserMapper();
-    private final ManagerMapper managerMapper = new ManagerMapper();
+    private final ManagerForUserMapper managerForUserMapper = new ManagerForUserMapper();
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
@@ -72,20 +75,12 @@ public class UserService implements UserServiceInt {
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             userDTO = userMapper.entityToDTO(user);
             if (userDTO.getManager() != null) {
-              ManagerDTO managerDTO =  managerMapper.entityToDTO(user.getManager());
+              ManagerDTO managerDTO =  managerForUserMapper.entityToDTO(user.getManager());
               managerDTO.setUser(userDTO);
             }
             return userDTO;
         }
         return null;
-    }
-
-    public UserDTO getUserByEmail(String email) {
-        User user = userDAOImpl.getUserByEmail(email);
-        if (user == null) {
-            return null;
-        }
-        return userMapper.entityToDTO(user);
     }
 
     public UserDTO getUserByPassword(String password) {
@@ -122,6 +117,25 @@ public class UserService implements UserServiceInt {
         return updateUser(userDTO.getId(), userDTO);
     }
 
+    public UserDTO createNewManager(UserDTO userDTO, HttpServletRequest req, HttpServletResponse resp, String path)
+            throws ServletException, IOException {
+            if (alreadyExists(userDTO)) {
+                req.setAttribute(WRONG, true);
+                req.getServletContext().getRequestDispatcher(path).forward(req, resp);
+                return null;
+            }
+            userDTO.setPassword(getHashedPassword(userDTO.getPassword()));
+            return userMapper.entityToDTO(userDAOImpl.create(userMapper.dtoToEntity(userDTO)));
+    }
+
+    private UserDTO getUserByEmail(String email) {
+        User user = userDAOImpl.getUserByEmail(email);
+        if (user == null) {
+            return null;
+        }
+        return userMapper.entityToDTO(user);
+    }
+
     private UserDTO checkSuperUserByPhoneNumber(String phoneNumber) {
         User user = userDAOImpl.getSuperUserByPhoneNumber(phoneNumber);
         if (user == null) {
@@ -130,7 +144,7 @@ public class UserService implements UserServiceInt {
         return userMapper.entityToDTO(user);
     }
 
-    private String getHashedPassword(String password) {
+    public String getHashedPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }

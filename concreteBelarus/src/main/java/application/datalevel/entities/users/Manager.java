@@ -21,7 +21,7 @@ public class Manager {
     private int id;
 
     @EqualsAndHashCode.Exclude
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
