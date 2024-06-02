@@ -10,14 +10,7 @@ public enum GradesConcrete {
     M450(450),
     M500(500);
 
-    private final int valueGrade;
-
     GradesConcrete(int valueGrade) {
-        this.valueGrade = valueGrade;
-    }
-
-    public int getValueGrade() {
-        return valueGrade;
     }
 
     public static GradesConcrete getGradeFromValue(int value) {

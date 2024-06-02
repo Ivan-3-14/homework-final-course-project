@@ -7,13 +7,22 @@
 <jsp:include page="allPageHeader.jsp"/>
 
 <% String errorMessage = (String) request.getAttribute("errorMessage");
-String pathToReturn = (String) request.getAttribute("pathToReturn");%>
+String pathToReturn = (String) request.getAttribute("pathToReturn");
+
+if(errorMessage == null) {
+    errorMessage = DEFAULT_ERROR_MESSAGE;
+}
+if (pathToReturn == null) {
+    pathToReturn = AUTHORIZATION_PAGE;
+}
+%>
+
 
 <div style="text-align: center; margin-top: 8%">
-<p style="font-size: 18px; color: crimson"><%=errorMessage%></p>
+<p style="font-size: 18px; color: crimson; width: 27%; margin-left: 37%"><%=errorMessage%></p>
 
 <form action="<%=pathToReturn%>">
-    <% if (request.getAttribute(ADMIN_ERROR) == null) {%>
+    <% if (request.getAttribute(PERSONAL_ERROR) == null) {%>
     <input type="hidden" name="<%=NAME%>" value="<%=request.getAttribute(NAME)%>">
     <input type="hidden" name="<%=SURNAME%>" value="<%=request.getAttribute(SURNAME)%>">
     <input type="hidden" name="<%=TEL_NUMBER%>" value="<%=request.getAttribute(TEL_NUMBER)%>">

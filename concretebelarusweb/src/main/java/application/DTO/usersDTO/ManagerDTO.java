@@ -11,7 +11,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ManagerDTO  {
+public class ManagerDTO {
 
     private Long id;
 

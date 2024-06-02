@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static application.utils.Constant.MINUS_ONE;
+import static application.utils.Constant.*;
 
 @Transactional
 @Service
@@ -37,7 +37,7 @@ public class PriceServiceImpl implements PriceService {
     private final AutoPriceRepository autoPriceRepository;
     private final AutoCapacityRepository autoCapacityRepository;
 
-
+    @Override
     @Transactional(readOnly = true)
     public PriceFilterToFront getAllPrice() {
 
@@ -60,33 +60,35 @@ public class PriceServiceImpl implements PriceService {
                 .build();
     }
 
-    public ConcretePriceDTO updateConcretePrice(Long id, Double newPrice) {
+    @Override
+    public void updateConcretePrice(Long id, Double newPrice) {
         ConcretePrice concretePrice = concretePriceRepository.getById(id);
         concretePrice.setPrice(newPrice);
         concretePriceRepository.save(concretePrice);
-        return concretePriceMapper.toDTO(concretePrice);
+        concretePriceMapper.toDTO(concretePrice);
     }
 
-    public AutoPriceDTO updateAutoPriceDTO(Long id, Double newPrice) {
+    @Override
+    public void updateAutoPriceDTO(Long id, Double newPrice) {
         AutoPrice autoPrice = autoPriceRepository.getById(id);
         autoPrice.setPrice(newPrice);
         autoPriceRepository.save(autoPrice);
-        return autoPriceMapper.toDTO(autoPrice);
+        autoPriceMapper.toDTO(autoPrice);
     }
 
-    public AutoCapacityDTO updateAutoCapacityDTO(Long idDelBefore50, Long idDelAfter50,  Integer delCoefficient) {
+    @Override
+    public void updateAutoCapacityDTO(Long idDelBefore50, Long idDelAfter50, Integer delCoefficient) {
         AutoCapacity autoCapacity = null;
         if (!idDelBefore50.equals(MINUS_ONE)) {
             autoCapacity = autoCapacityRepository.getById(idDelBefore50);
             autoCapacity.getDeliveryCoefficient().setDeliveryCoefficientBfr50(delCoefficient);
             autoCapacity = autoCapacityRepository.save(autoCapacity);
-        } else if (!idDelAfter50.equals(MINUS_ONE)){
+        } else if (!idDelAfter50.equals(MINUS_ONE)) {
             autoCapacity = autoCapacityRepository.getById(idDelAfter50);
             autoCapacity.getDeliveryCoefficient().setDeliveryCoefficientBfr50(delCoefficient);
             autoCapacity = autoCapacityRepository.save(autoCapacity);
         }
-
-        return autoCapacityMapper.toDTO(autoCapacity);
+        autoCapacityMapper.toDTO(autoCapacity);
     }
 }
 

@@ -1,9 +1,6 @@
 package application.controller;
 
 import application.DTO.filtersDTO.BuildingObjectPaginationFilter;
-import application.DTO.filtersDTO.OrderPaginationFilter;
-import application.DTO.objectDTO.BuildingObjectDTO;
-import application.DTO.orderDTO.OrderDTO;
 import application.services.interfaces.BuildingObjectService;
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 import static application.utils.Constant.*;
 
 @Controller
@@ -21,8 +16,6 @@ import static application.utils.Constant.*;
 public class BuildingObjectController {
 
     private final BuildingObjectService buildingObjectService;
-
-    public static final String ALL_OBJECTS = "allObjects";
 
     @GetMapping(path = "/myObjects")
     public String goToMyOrders(Model model, @RequestParam Long currentUserId,
@@ -37,7 +30,7 @@ public class BuildingObjectController {
 
     @GetMapping(path = "/searchObject")
     public String searchObject(Model model, @RequestParam Long currentUserId,
-                              @RequestParam String search,
+                               @RequestParam String search,
                                @RequestParam(defaultValue = "0") int currentPage) {
         if (search.equals(NULL) || StringUtils.isBlank(search)) {
             return goToMyOrders(model, currentUserId, currentPage);

@@ -2,12 +2,7 @@ package application.repository;
 
 import application.DTO.filtersDTO.BuildingObjectPaginationFilter;
 import application.converter.BuildingObjectMapper;
-import application.entity.enums.aggregate.Aggregate;
-import application.entity.enums.grades.GradesConcrete;
-import application.entity.enums.orderstatus.OrderStatus;
 import application.entity.object.BuildingObject;
-import application.entity.order.Order;
-import liquibase.repackaged.org.apache.commons.lang3.EnumUtils;
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -19,14 +14,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static application.utils.Constant.*;
@@ -49,8 +38,8 @@ public class ObjectCriteriaRepositoryImpl implements ObjectCriteriaRepository {
         typedQuery.setFirstResult(page * ROW_IN_PAGE_OBJECTS);
         typedQuery.setMaxResults(ROW_IN_PAGE_OBJECTS);
 
-        double temp = Math. ceil((double) entityManager.createQuery(criteriaQuery).getResultList().size() /
-                ROW_IN_PAGE_OBJECTS);
+        double temp = Math.ceil((double) entityManager.createQuery(criteriaQuery).getResultList().size()
+                / ROW_IN_PAGE_OBJECTS);
         return BuildingObjectPaginationFilter.builder()
                 .objectDTOList(typedQuery.getResultList().stream().map(buildingObjectMapper::toDTO).collect(Collectors.toList()))
                 .countOfTotalPage((int) temp)

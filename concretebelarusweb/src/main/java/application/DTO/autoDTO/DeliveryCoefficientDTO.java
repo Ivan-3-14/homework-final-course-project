@@ -1,9 +1,6 @@
 package application.DTO.autoDTO;
 
-import application.entity.autotransportation.AutoCapacity;
 import lombok.*;
-
-import javax.persistence.*;
 
 @Data
 @Builder

@@ -39,8 +39,8 @@
 if (userDTO != null) { %>
 
 <body>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}adminMainPage'> Мой аккаунт
+<a style="font-size: 18px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
 
 <h2>введите новые данные, где необходимо</h2>

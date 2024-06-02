@@ -43,7 +43,9 @@ public class Concrete {
     private Set<Order> orderSet;
 
     @Builder.Default
-    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinTable(name = "object_concrete",
             joinColumns = {@JoinColumn(name = "concrete_id")},
             inverseJoinColumns = {@JoinColumn(name = "object_id")})

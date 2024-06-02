@@ -1,6 +1,7 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="application.DTO.usersDTO.UserDTO" %>
+<%@ page import="static application.utils.Constant.ALL_MANAGER_LIST" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <html>
@@ -56,7 +57,7 @@
 </a>
 </br>
 
-<% List<UserDTO> list = (List<UserDTO>) request.getAttribute("allManagerList"); %>
+<% List<UserDTO> list = (List<UserDTO>) request.getAttribute(ALL_MANAGER_LIST); %>
 
 <div style="float: left; margin-top: -4vw; margin-left: 9vw; width: 80%">
     <table>

@@ -50,35 +50,35 @@ public class Order {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
     @JoinColumn(name = "concrete_id")
     private Concrete concrete;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "concrete_grade_id")
     private ConcreteGrade concreteGrade;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "mobility_id")
     private Mobility mobility;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "building_object_id")
     private BuildingObject buildingObject;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 }

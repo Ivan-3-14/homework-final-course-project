@@ -1,6 +1,8 @@
 package application.services.interfaces;
 
 import application.DTO.usersDTO.UserDTO;
+import application.entity.enums.roles.Roles;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -23,5 +25,9 @@ public interface UserService {
     UserDTO changePassword(String password1, String password2, Long currentUserId);
 
     List<UserDTO> getAllManager();
+
+    Page<UserDTO> getAllUsers(int currentPage, int countOrdersAtPage);
+
+    Page<UserDTO> getFilterUsers(int currentPage, int countOrdersAtPage, Roles role);
 
 }

@@ -1,18 +1,16 @@
 package application.services.impl;
 
-import application.DTO.concreteDTO.ConcreteDTO;
-import application.DTO.concreteDTO.ConcreteGradeDTO;
 import application.DTO.concreteDTO.MobilityDTO;
 import application.DTO.filtersDTO.FilterOrderInform;
 import application.DTO.filtersDTO.OrderPaginationFilter;
 import application.DTO.objectDTO.BuildingObjectDTO;
 import application.DTO.orderDTO.OrderDTO;
+import application.DTO.usersDTO.ManagerDTO;
 import application.DTO.usersDTO.UserDTO;
-import application.converter.ConcreteGradeMapper;
-import application.converter.ConcreteMapper;
-import application.converter.MobilityMapper;
-import application.converter.OrderMapper;
+import application.converter.*;
 import application.entity.autotransportation.AutoCapacity;
+import application.entity.concreteentities.Concrete;
+import application.entity.concreteentities.ConcreteGrade;
 import application.entity.concreteentities.Mobility;
 import application.entity.enums.aggregate.Aggregate;
 import application.entity.enums.cartype.CarType;
@@ -21,13 +19,14 @@ import application.entity.enums.mobilityvalue.MobilityValue;
 import application.entity.enums.orderstatus.OrderStatus;
 import application.entity.enums.roles.Roles;
 import application.entity.order.Order;
+import application.entity.users.Manager;
 import application.repository.*;
 import application.services.interfaces.BuildingObjectService;
 import application.services.interfaces.OrderService;
 import application.services.interfaces.UserService;
 import application.utils.ModelUtils;
-import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,13 +42,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static application.utils.Constant.*;
+import static application.logger.LoggerPrinter.logPrint;
 
 @Transactional
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     private final UserService userService;
@@ -59,6 +59,7 @@ public class OrderServiceImpl implements OrderService {
     private final ConcreteGradeMapper concreteGradeMapper = Mappers.getMapper(ConcreteGradeMapper.class);
     private final ConcreteMapper concreteMapper = Mappers.getMapper(ConcreteMapper.class);
     private final OrderMapper orderMapper = Mappers.getMapper(OrderMapper.class);
+    private final ManagerMapper managerMapper = Mappers.getMapper(ManagerMapper.class);
 
     private final OrderRepository orderRepository;
     private final MobilityRepository mobilityRepository;
@@ -66,9 +67,11 @@ public class OrderServiceImpl implements OrderService {
     private final ConcreteGradeRepository concreteGradeRepository;
     private final AutoCapacityRepository autoCapacityRepository;
     private final ConcretePriceRepository concretePriceRepository;
+    private final ManagerRepository managerRepository;
 
     private final ModelUtils modelUtils;
 
+    @Override
     public FilterOrderInform createNewOrder(FilterOrderInform filterOrderInform, Model model) {
 
         FilterOrderInform filterOrder = getFilterDTOFromFront(filterOrderInform, model);
@@ -77,10 +80,13 @@ public class OrderServiceImpl implements OrderService {
             OrderDTO orderDTO = filterOrder.getOrderDTO();
             BuildingObjectDTO buildingObjectDTO = filterOrder.getBuildingObjectDTO();
             UserDTO userDTO = userService.checkExistUser(filterOrder.getUserDTO());
+            Concrete concrete = filterOrder.getConcrete();
+            ConcreteGrade concreteGrade = filterOrder.getGrade();
 
             buildingObjectDTO.setUser(userDTO);
             orderDTO.setUserDTO(userDTO);
-            BuildingObjectDTO buildingObject = buildingObjectService.createBuildingObject(buildingObjectDTO);
+            BuildingObjectDTO buildingObject = buildingObjectService.createBuildingObject(buildingObjectDTO,
+                    concrete, concreteGrade);
 
             Double coast = getOrderCoast(orderDTO, buildingObject);
             orderDTO.setCost(coast);
@@ -90,28 +96,72 @@ public class OrderServiceImpl implements OrderService {
             filterOrder.setUserDTO(userDTO);
             filterOrder.setBuildingObjectDTO(buildingObject);
             filterOrder.setOrderDTO(order);
+            log.info(logPrint(CREATE_NEW_ORDER_SUCCESSFUL));
         }
-
         return filterOrder;
     }
 
+    @Override
     public OrderDTO readOrder(Long id) {
         return orderMapper.toDTO(orderRepository.findById(id).orElse(new Order()));
     }
 
+    @Override
     public void deleteOrder(Long orderId) {
-            orderRepository.deleteById(orderId);
+        orderRepository.deleteById(orderId);
     }
 
+    @Override
     public OrderPaginationFilter readOrders(String search, Long currentUserId, int page) {
-        return orderRepository.findAllOrderWithFilter(search, currentUserId, page);
+        OrderPaginationFilter orderPaginationFilter =
+                orderRepository.findAllOrderWithFilter(search, currentUserId, page);
+        orderPaginationFilter.setCountOfNewOrders(orderRepository.countOrderByOrderStatus(OrderStatus.NEW));
+        return orderPaginationFilter;
     }
 
+    @Override
     public OrderPaginationFilter getOrderPaginationFilter(Long currentUserId, int currentPage,
                                                           int countOrdersAtPage) {
+        List<OrderDTO> orderDTOList = new ArrayList<>();
+        int totalPage = 0;
+
         Page<OrderDTO> listOrders = getAllOrdersByUserId(currentUserId,
                 PageRequest.of(currentPage, countOrdersAtPage));
 
+        if (listOrders != null) {
+            log.info(logPrint(GET_ALL_ORDERS_BY_USER_ID_SUCCESSFUL));
+        orderDTOList = listOrders.toList();
+        totalPage = listOrders.getTotalPages();
+        }
+
+        return OrderPaginationFilter.builder()
+                .listOrders(orderDTOList)
+                .currentPage(currentPage)
+                .countOfTotalPage(totalPage)
+                .build();
+    }
+
+    @Override
+    public OrderPaginationFilter getOrderPaginationFilterForManager(Long currentUserId, int currentPage,
+                                                                    int countOrdersAtPage) {
+        Long managerId = userService.readUser(currentUserId).getManager().getId();
+
+        Page<OrderDTO> listOrders = orderRepository.findAllByManagerId(managerId,
+                PageRequest.of(currentPage, countOrdersAtPage)).map(orderMapper::toDTO);
+        return OrderPaginationFilter.builder()
+                .listOrders(listOrders.toList())
+                .currentPage(currentPage)
+                .countOfTotalPage(listOrders.getTotalPages())
+                .countOfNewOrders(orderRepository.countOrderByOrderStatus(OrderStatus.NEW))
+                .build();
+    }
+
+    @Override
+    public OrderPaginationFilter getNewOrderList(int currentPage,
+                                                 int countOrdersAtPage, OrderStatus orderStatus) {
+        Page<OrderDTO> listOrders = orderRepository.findAllByOrderStatus(orderStatus,
+                PageRequest.of(currentPage, countOrdersAtPage)).map(orderMapper::toDTO);
+        log.info(logPrint(GET_NEW_ORDER_LIST_END));
         return OrderPaginationFilter.builder()
                 .listOrders(listOrders.toList())
                 .currentPage(currentPage)
@@ -119,27 +169,43 @@ public class OrderServiceImpl implements OrderService {
                 .build();
     }
 
+    @Override
+    public void acceptOrder(Long orderId, Long userId) {
+        Manager manager = managerRepository.getById(userService.readUser(userId).getManager().getId());
+        Order order = orderRepository.getById(orderId);
+        order.setOrderStatus(OrderStatus.IN_WORK);
+        order.setManager(manager);
+        orderRepository.save(order);
+    }
+
     private FilterOrderInform getFilterDTOFromFront(FilterOrderInform filterOrderInform, Model model) {
 
         String aggregate = filterOrderInform.getAggregate();
         String gradeConcrete = filterOrderInform.getConcreteGrade();
         String mobilityConcrete = filterOrderInform.getMobility();
-
         String nameOfObject = filterOrderInform.getNameOfObject();
         Double distanceToObject = filterOrderInform.getDistanceToObject();
         Double volumeOfConcrete = filterOrderInform.getVolumeOfConcrete();
         String dateOfDelivery = filterOrderInform.getDateOfDelivery();
         String timeOfDelivery = filterOrderInform.getTimeOfDelivery();
         String comment = filterOrderInform.getComment();
-
         String name = filterOrderInform.getName();
         String surname = filterOrderInform.getSurname();
         String telephoneNumber = filterOrderInform.getTelephoneNumber();
+        OrderStatus orderStatus = filterOrderInform.getOrderStatus();
+
+        if (orderStatus == null) {
+            orderStatus = OrderStatus.NEW;
+        }
 
         BuildingObjectDTO buildingObjectDTO;
         OrderDTO orderDTO;
         UserDTO userDTO;
+        ManagerDTO managerDTO = getManagerDTO(filterOrderInform);
 
+        if (OrderStatus.NEW.equals(orderStatus)) {
+            managerDTO = null;
+        }
         modelUtils.addAttributesToModel(model, nameOfObject, distanceToObject, volumeOfConcrete, comment, name,
                 surname, telephoneNumber);
 
@@ -151,18 +217,26 @@ public class OrderServiceImpl implements OrderService {
             if (distanceToObject != null) {
                 distance = distanceToObject;
             }
-
-            if (checkAggregate(filterOrderInform, model, aggregate, grade)) return filterOrderInform;
-
+            if (checkAggregate(filterOrderInform, model, aggregate, grade)) {
+                log.info(logPrint(CHECK_AGGREGATE_FALSE));
+                return filterOrderInform;
+            }
             Date date = orderDateConverter(dateOfDelivery);
-            if (checkDate(filterOrderInform, model, date)) return filterOrderInform;
-
+            if (checkDate(filterOrderInform, model, date)) {
+                log.info(logPrint(CHECK_DATE_FALSE));
+                return filterOrderInform;
+            }
             Time time = orderTimeConverter(timeOfDelivery);
-            if (checkTime(filterOrderInform, model, time)) return filterOrderInform;
+            if (checkTime(filterOrderInform, model, time)) {
+                log.info(logPrint(CHECK_TIME_FALSE));
+                return filterOrderInform;
+            }
 
             MobilityDTO mobilityDTO = orderMobilityConverter(mobility);
-            ConcreteGradeDTO concreteGradeDTO = orderGradeConverter(grade);
-            ConcreteDTO concreteDTO = orderConcreteConverter(aggregate);
+            ConcreteGrade concreteGrade = orderGradeConverter(grade);
+            Concrete concrete = orderConcreteConverter(aggregate);
+            filterOrderInform.setConcrete(concrete);
+            filterOrderInform.setGrade(concreteGrade);
 
             userDTO = UserDTO.builder()
                     .name(name)
@@ -174,26 +248,23 @@ public class OrderServiceImpl implements OrderService {
             buildingObjectDTO = BuildingObjectDTO.builder()
                     .nameOfObject(nameOfObject)
                     .distanceToObject(distance)
-                    .concreteGradeSet(new HashSet<>())
-                    .concretesSet(new HashSet<>())
                     .build();
-            buildingObjectDTO.getConcretesSet().add(concreteDTO);
-            buildingObjectDTO.getConcreteGradeSet().add(concreteGradeDTO);
 
             orderDTO = OrderDTO.builder()
                     .id(filterOrderInform.getCurrentOrderId())
-                    .concreteDTO(concreteDTO)
-                    .concreteGradeDTO(concreteGradeDTO)
+                    .concreteDTO(concreteMapper.toDTO(concrete))
+                    .concreteGradeDTO(concreteGradeMapper.toDTO(concreteGrade))
                     .mobilityDTO(mobilityDTO)
                     .volumeOfConcrete(volumeOfConcrete)
                     .dateOfDelivery(date)
                     .timeOfDelivery(time)
                     .comment(comment)
-                    .orderStatus(OrderStatus.NEW)
+                    .orderStatus(orderStatus)
+                    .managerDTO(managerDTO)
                     .orderTimeCreate(new Timestamp(System.currentTimeMillis()))
                     .build();
-
         } catch (ParseException e) {
+            log.info(logPrint(FILTER_DTO_FROM_FRONT_CATCH));
             filterOrderInform.setErrorMessage(INCORRECT_DATE_OR_TIME);
             filterOrderInform.setModel(model);
             return filterOrderInform;
@@ -205,48 +276,9 @@ public class OrderServiceImpl implements OrderService {
         return filterOrderInform;
     }
 
-    private boolean checkTime(FilterOrderInform filterOrderInform, Model model, Time time) {
-        if (time.compareTo(Time.valueOf(START_WORK_TIME)) < ZERO
-                || time.compareTo(Time.valueOf(END_WORK_TIME)) > ZERO) {
-            filterOrderInform.setModel(model);
-            filterOrderInform.setErrorMessage(INCORRECT_TIME);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkDate(FilterOrderInform filterOrderInform, Model model, Date date) {
-        if (date.compareTo(new java.util.Date()) < ZERO) {
-            filterOrderInform.setModel(model);
-            filterOrderInform.setErrorMessage(INCORRECT_DATE);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkAggregate(FilterOrderInform filterOrderInform, Model model, String aggregate, int grade) {
-        if (Aggregate.GRAVEL.toString().equals(aggregate) && grade > GRAVEL_BORDER) {
-            filterOrderInform.setModel(model);
-            filterOrderInform.setErrorMessage(INCORRECT_AGGREGATE);
-            return true;
-        }
-        return false;
-    }
     @Transactional(readOnly = true)
     protected Page<OrderDTO> getAllOrdersByUserId(Long userId, Pageable paging) {
-        Page<OrderDTO> page = orderRepository.findAllByUserId(userId, paging).map(orderMapper::toDTO);
-        return page;
-    }
-
-    private Date orderDateConverter(String dateOfDelivery) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat(MY_DATE_FORMAT, Locale.ENGLISH);
-        formatter.setTimeZone(TimeZone.getTimeZone(UTC));
-        return new Date(formatter.parse(dateOfDelivery).getTime());
-    }
-
-    private Time orderTimeConverter(String timeOfDelivery) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat(MY_TIME_FORMAT);
-        return new java.sql.Time(dateFormat.parse(timeOfDelivery).getTime());
+        return orderRepository.findAllByUserId(userId, paging).map(orderMapper::toDTO);
     }
 
     @Transactional(readOnly = true)
@@ -256,22 +288,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Transactional(readOnly = true)
-    protected ConcreteGradeDTO orderGradeConverter(int grade) {
+    protected ConcreteGrade orderGradeConverter(int grade) {
         GradesConcrete orderGrade = GradesConcrete.getGradeFromValue(grade);
-        return concreteGradeMapper.toDTO(concreteGradeRepository.getByGradesConcrete(orderGrade));
+        return concreteGradeRepository.getByGradesConcrete(orderGrade);
     }
 
     @Transactional(readOnly = true)
-    protected ConcreteDTO orderConcreteConverter(String aggregate) {
+    protected Concrete orderConcreteConverter(String aggregate) {
         Aggregate orderAggregate = Aggregate.getAggregateByValue(aggregate);
-        return concreteMapper.toDTO(concreteRepository.getByAggregate(orderAggregate));
-    }
-
-    private UserDTO checkUserRole(UserDTO userDTO) {
-        if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) {
-            return null;
-        }
-        return userDTO;
+        return concreteRepository.getByAggregate(orderAggregate);
     }
 
     @Transactional(readOnly = true)
@@ -328,5 +353,67 @@ public class OrderServiceImpl implements OrderService {
                 carType)
                 .getAutoPrice().getPrice() + coefficient * distance;
         return (price * temp);
+    }
+
+    @Transactional(readOnly = true)
+    protected ManagerDTO getManagerDTO(FilterOrderInform filterOrderInform) {
+        if (filterOrderInform != null) {
+            Long managerId = filterOrderInform.getManagerID();
+            if (managerId != null) {
+                log.info(logPrint(GET_MANAGER_DTO_SUCCESSFUL_END));
+                return managerMapper.toDTO(managerRepository.getById(managerId));
+            }
+        }
+        return null;
+    }
+
+    private boolean checkTime(FilterOrderInform filterOrderInform, Model model, Time time) {
+        if (time.compareTo(Time.valueOf(START_WORK_TIME)) < ZERO
+                || time.compareTo(Time.valueOf(END_WORK_TIME)) > ZERO) {
+            filterOrderInform.setModel(model);
+            filterOrderInform.setErrorMessage(INCORRECT_TIME);
+            log.info(logPrint(CHECK_TIME_SUCCESSFUL_END));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkDate(FilterOrderInform filterOrderInform, Model model, Date date) {
+        if (date.compareTo(new java.util.Date()) < ZERO) {
+            filterOrderInform.setModel(model);
+            filterOrderInform.setErrorMessage(INCORRECT_DATE);
+            log.info(logPrint(CHECK_DATE_SUCCESSFUL_END));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkAggregate(FilterOrderInform filterOrderInform, Model model, String aggregate, int grade) {
+        if (Aggregate.GRAVEL.toString().equals(aggregate) && grade > GRAVEL_BORDER) {
+            filterOrderInform.setModel(model);
+            filterOrderInform.setErrorMessage(INCORRECT_AGGREGATE);
+            log.info(logPrint(CHECK_AGGREGATE_SUCCESSFUL_END));
+            return true;
+        }
+        return false;
+    }
+
+    private UserDTO checkUserRole(UserDTO userDTO) {
+        if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) {
+            log.info(logPrint(CHECK_USER_ROLE));
+            return null;
+        }
+        return userDTO;
+    }
+
+    private Date orderDateConverter(String dateOfDelivery) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat(MY_DATE_FORMAT, Locale.ENGLISH);
+        formatter.setTimeZone(TimeZone.getTimeZone(UTC));
+        return new Date(formatter.parse(dateOfDelivery).getTime());
+    }
+
+    private Time orderTimeConverter(String timeOfDelivery) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat(MY_TIME_FORMAT);
+        return new java.sql.Time(dateFormat.parse(timeOfDelivery).getTime());
     }
 }

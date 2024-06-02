@@ -15,9 +15,10 @@
 
 <body>
 <%if (userDTO != null) {%>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
-</a><%}%>
+<a style="font-size: 18px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
+</a>
+<%}%>
 
 <form style="margin-left: 20%; margin-top: 40px; width: 80%; display: block;"
       method="post" action="${pageContext.request.contextPath}newOrder" >
@@ -141,21 +142,21 @@
            placeholder="Комментарий к заказу"/>
     </label>
     </br>
+    <label>
+        <%if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) { %>
+        <input type='hidden' name="managerID" value="<%=userDTO.getManager().getId()%>">
+        <label style="margin-left: 1px; width: 420px;" for="OrderStatus">Статус Заказа</label>
+        <select id="OrderStatus" name="orderStatus" style="margin-top: 1px; width: 200px; height: 35px; text-align:center;
+     margin-left: 128px">
+            <option value="IN_WORK">в работе</option>
+            <option value="NEW">новый</option>
+            <option value="CLOSED">закрыт</option>
+        </select>
+        <%} %>
+    </label>
     <input style="width: 150px; height: 25px; text-align:center; margin-top: 12px; margin-left: 740px;" type="submit">
 </form>
 
-<% if (request.getAttribute("checkGrade") != null) {%>
-<p style="color: #ec6767; margin-left: 38%; font-size: 18px;"> Марка бетона на гравии не может быть выше М300</p>
-<% } %>
-
-<% if (request.getAttribute("wrongDistanceOrVolume") != null) {%>
-<p style="color: #ec6767; margin-left: 38%; font-size: 18px;"> Расстояние и объём бетона должны быть указаны цифрами</p>
-<% } %>
-</body>
-
-<% if (request.getAttribute("wrongTimeOrDate") != null) {%>
-<p style="color: #ec6767; margin-left: 38%; font-size: 18px;"> Пожалуйста, выберите дату и время</p>
-<% } %>
 </body>
 
 <jsp:include page="forAllPage.jsp"/>

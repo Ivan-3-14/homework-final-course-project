@@ -5,9 +5,7 @@ import application.DTO.filtersDTO.OrderPaginationFilter;
 import application.DTO.orderDTO.OrderDTO;
 import application.services.interfaces.OrderService;
 import application.utils.ModelUtils;
-import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-
-import java.util.List;
 
 import static application.utils.Constant.*;
 
@@ -28,7 +24,6 @@ public class OrderController {
     private final OrderService orderService;
     private final ApplicationExceptionController applicationExceptionController;
     private final ModelUtils modelUtils;
-
 
     @GetMapping(path = "/newOrderForm")
     public String goToNewOrderPage() {
@@ -135,6 +130,6 @@ public class OrderController {
     @PostMapping(path = "/deleteOrderList")
     public String deleteFromOrderList(Model model, @RequestParam Long tempOrderID, @RequestParam Long currentUserId) {
         orderService.deleteOrder(tempOrderID);
-        return goToMyOrders(model, currentUserId, 0);
+        return goToMyOrders(model, currentUserId, NULL_PAGE);
     }
 }

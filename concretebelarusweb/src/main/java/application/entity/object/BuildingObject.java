@@ -40,7 +40,7 @@ public class BuildingObject {
     private Set<Order> orderSet = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 }

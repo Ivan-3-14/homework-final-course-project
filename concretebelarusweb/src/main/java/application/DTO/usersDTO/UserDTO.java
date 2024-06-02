@@ -6,8 +6,10 @@ import application.entity.enums.roles.Roles;
 import lombok.*;
 
 import javax.validation.constraints.*;
-import java.util.HashSet;
 import java.util.Set;
+
+import static application.utils.Constant.EMAIL_REGEX;
+import static application.utils.Constant.PHONE_NUMBER_REGEX;
 
 @Data
 @Builder
@@ -23,10 +25,10 @@ public class UserDTO {
     @NotBlank
     private String surname;
 
-    @NotBlank
+    @Pattern(regexp = PHONE_NUMBER_REGEX)
     private String telephoneNumber;
 
-    @NotBlank
+    @Pattern(regexp = EMAIL_REGEX)
     private String email;
 
     @NotBlank

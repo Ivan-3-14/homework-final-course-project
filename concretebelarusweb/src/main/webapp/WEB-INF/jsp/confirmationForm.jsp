@@ -24,20 +24,10 @@
 
 <%if (userDTO != null) { %>
 
-<% if (Roles.USER.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
-<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
-</a>
-<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}adminMainPage'> Мой аккаунт
-</a>
-<% }
-}%>
+<%}%>
 
 <% OrderDTO orderDTO = (OrderDTO) request.getAttribute(CURRENT_ORDER);%>
 
@@ -113,10 +103,18 @@
 </table>
 
 <div>
+    <%if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) { %>
+    <form action="${pageContext.request.contextPath}managerMainPage" method="get">
+        <input type='hidden' name="currentUserId" value="<%=userDTO.getId()%>">
+        <button> Подтвердить заказ </button>
+    </form>
+    <%} else {%>
+
     <form action="${pageContext.request.contextPath}confirmationOrder" method="get">
         <input type='hidden' name="currentOrderId" value="<%=orderDTO.getId()%>">
         <button> Подтвердить заказ </button>
     </form>
+    <%} %>
 
 </br>
     <form action="${pageContext.request.contextPath}orderUpdateForm" method="post">
@@ -130,7 +128,7 @@
     </form>
 </div>
 <%}%>
-<div style="float: right; margin: -16vw 12vw -2vw -2vw; ">
+<div style="float: right; margin: -12vw 12vw -2vw -2vw; ">
 <img style="width: 38vw; height: 22vw" src="${pageContext.request.contextPath}images/lodka.jpg" alt="лодки">
 </div >
 </body>

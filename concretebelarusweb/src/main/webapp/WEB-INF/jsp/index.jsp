@@ -1,10 +1,10 @@
 <%@ page import="application.DTO.usersDTO.UserDTO" %>
-<%@ page import="application.entity.enums.roles.Roles" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.DTO.concreteDTO.ConcretePriceDTO" %>
 <%@ page import="application.DTO.autoDTO.AutoPriceDTO" %>
 <%@ page import="application.DTO.autoDTO.AutoCapacityDTO" %>
 <%@ page import="static application.utils.Constant.CURRENT_USER" %>
+<%@ page import="static application.utils.Constant.*" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -33,41 +33,30 @@
 <header style="margin-top: -8px;">
 
     <h3 style= "text-align:right; margin-top: -8px; margin-bottom: -8px;"> &#9742; +375-29-650-70-20 </h3>
-    <h1 style=margin-bottom:-8px; display:inline-block>
+    <h1 style="margin-bottom:-8px; display:inline-block">
         <img style="vertical-align: middle; margin-top: -8px;"
              src="${pageContext.request.contextPath}images/fon-1.jpg" alt="П"
         > ОКУПАЙТЕ БЕТОН B CONCRETE BELARUS
     </h1>
     <%
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute(CURRENT_USER);
-        if (userDTO != null) {
-            if (Roles.USER.equals(userDTO.getRole())) { %>
-    <a style="font-size: 17px; color: mediumblue;  float: right;  margin-right: 8px; margin-top:0; margin-bottom: 1vw"
-            href='${pageContext.request.contextPath}userMainPage'
-    > Добро пожаловать,<%= userDTO.getName()%>
-    </a> <% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
-    <a style="font-size: 17px; color: mediumblue;  float: right;  margin-right: 8px; margin-top:0; margin-bottom: 1vw"
-       href='${pageContext.request.contextPath}adminMainPage'
-    > Добро пожаловать,<%= userDTO.getName()%>
-    </a>
-    <% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
-    <a style="font-size: 17px; color: mediumblue;  float: right;  margin-right: 8px; margin-top:0; margin-bottom: 1vw"
-       href='${pageContext.request.contextPath}mainPageForManager.jsp'
-    > Добро пожаловать,<%= userDTO.getName()%>
-    </a>
-    <% }
+        if (userDTO != null) { %>
+    <a style="font-size: 17px; color: mediumblue;  float: right; vertical-align: bottom; margin-right: 8px;margin-top: 4%"
+            href='${pageContext.request.contextPath}signUp'
+    > Добро пожаловать,<%= userDTO.getName()%> </a>
+    <%
     } else { %>
-    <a style="font-size: 16px; color: mediumblue;  float: right; vertical-align: bottom; margin-right: 8px"
+    <a style="font-size: 16px; color: mediumblue;  float: right; vertical-align: bottom; margin-right: 8px;margin-top: 4%"
        href='${pageContext.request.contextPath}authorizationPage'> Войти/Зарегистрироваться
-    </a>
-    <% } %>
+
+    <% }%>
     <h1></h1>
 </header>
 <p></p>
-<header style="background: #565874; height: 5vw">
+<header style="background: #565874; height: 5vw; margin-top: 1vw">
     </br>
     </br>
-    <a style="font-size: 18px;color: white; float: right; margin-right: 8px" href="${pageContext.request.contextPath}newOrderForm">Заказать бетон</a>
+    <a style="font-size: 18px;color: white; float: right; margin-right: 1vw" href="${pageContext.request.contextPath}newOrderForm">Заказать бетон</a>
     </br>
     <h9>   </h9>
     </br>
@@ -126,9 +115,9 @@
     <h4 style="float: left; padding-left: 600px;"> Стоимость доставки </h4>
     <div style="clear: left"></div>
 
-<%  List<ConcretePriceDTO> concretePrice = (List<ConcretePriceDTO>) request.getAttribute("concretePriceList");
-    List<AutoPriceDTO> autoPrice = (List<AutoPriceDTO>) request.getAttribute("autoPriceList");
-    List<AutoCapacityDTO> autoCapacity = (List<AutoCapacityDTO>) request.getAttribute("autoCapacityList");
+<%  List<ConcretePriceDTO> concretePrice = (List<ConcretePriceDTO>) request.getAttribute(CONCRETE_PRICE_LIST);
+    List<AutoPriceDTO> autoPrice = (List<AutoPriceDTO>) request.getAttribute(AUTO_PRICE_LIST);
+    List<AutoCapacityDTO> autoCapacity = (List<AutoCapacityDTO>) request.getAttribute(AUTO_CAPACITY_LIST);
 %>
 <table style="float: left; margin-right: 50px; margin-left: 50px;">
     <thead >

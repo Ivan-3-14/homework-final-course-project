@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConcreteGradeRepository extends JpaRepository<ConcreteGrade, Long> {
 
-    ConcreteGrade getByGradesConcrete (GradesConcrete gradesConcrete);
+    ConcreteGrade getByGradesConcrete(GradesConcrete gradesConcrete);
 
 }

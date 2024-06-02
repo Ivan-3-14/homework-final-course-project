@@ -2,7 +2,11 @@ package application.DTO.filtersDTO;
 
 import application.DTO.objectDTO.BuildingObjectDTO;
 import application.DTO.orderDTO.OrderDTO;
+import application.DTO.usersDTO.ManagerDTO;
 import application.DTO.usersDTO.UserDTO;
+import application.entity.concreteentities.Concrete;
+import application.entity.concreteentities.ConcreteGrade;
+import application.entity.enums.orderstatus.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +17,9 @@ import org.springframework.ui.Model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
+import static application.utils.Constant.PHONE_NUMBER_REGEX;
 import static org.springframework.format.annotation.NumberFormat.Style.NUMBER;
 
 @Builder
@@ -31,7 +36,7 @@ public class FilterOrderInform {
     @NotBlank
     private String surname;
 
-    @NotBlank
+    @Pattern(regexp = PHONE_NUMBER_REGEX)
     private String telephoneNumber;
 
     @NotBlank
@@ -44,6 +49,8 @@ public class FilterOrderInform {
     private String aggregate;
 
     private String concreteGrade;
+
+    private OrderStatus orderStatus;
 
     @NotNull
     @Range(max = 250)
@@ -67,5 +74,11 @@ public class FilterOrderInform {
     private String errorMessage;
 
     private Model model;
+
+    private ConcreteGrade grade;
+
+    private Concrete concrete;
+
+    private Long managerID;
 
 }

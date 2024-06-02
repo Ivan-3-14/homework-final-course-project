@@ -52,20 +52,11 @@
 %>
 
 <%if (userDTO != null) {%>
-<% if (Roles.USER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
-</a>
-<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
-</a>
-<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
-<a style="font-size: 18px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}adminMainPage'> Мой аккаунт
+<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
         <% } %>
-        <% } %>
+
     <div style="clear: right"></div>
         <%  List<ConcretePriceDTO> concretePrice = (List<ConcretePriceDTO>) request.getAttribute("concretePriceList");
     List<AutoPriceDTO> autoPrice = (List<AutoPriceDTO>) request.getAttribute("autoPriceList");

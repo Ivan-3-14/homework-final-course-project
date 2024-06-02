@@ -13,7 +13,4 @@ public enum FrostResistance {
         this.valueFR = valueFR;
     }
 
-    public int getValueFR() {
-        return valueFR;
-    }
 }

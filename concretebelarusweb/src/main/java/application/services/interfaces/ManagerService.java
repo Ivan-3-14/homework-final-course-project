@@ -5,7 +5,5 @@ import application.DTO.usersDTO.UserDTO;
 
 public interface ManagerService {
 
-    ManagerDTO readManagerDTO(Long managerId);
-
     ManagerDTO createManager(UserDTO userDTO);
 }

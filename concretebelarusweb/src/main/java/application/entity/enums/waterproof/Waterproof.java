@@ -1,6 +1,6 @@
 package application.entity.enums.waterproof;
 
-public enum  Waterproof {
+public enum Waterproof {
     W2(2),
     W4(4),
     W6(6),
@@ -12,9 +12,5 @@ public enum  Waterproof {
 
     Waterproof(int valueWP) {
         this.valueWP = valueWP;
-    }
-
-    public int getValueWP() {
-        return valueWP;
     }
 }

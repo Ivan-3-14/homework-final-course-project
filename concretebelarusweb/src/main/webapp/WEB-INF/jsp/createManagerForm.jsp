@@ -20,8 +20,9 @@
 <%UserDTO userDTO = (UserDTO) request.getSession().getAttribute(CURRENT_USER);%>
 <%if (userDTO != null) {%>
 <a style="font-size: 18px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}adminMainPage'> Мой аккаунт
-</a><%}%>
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
+</a>
+<%}%>
 
 
 <form style="margin-left: 40%; margin-top: 2vw; width: 21vw; margin-bottom: -1vw; display: block;"

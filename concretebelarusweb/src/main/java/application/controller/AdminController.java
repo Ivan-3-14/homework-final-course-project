@@ -7,7 +7,6 @@ import application.entity.enums.roles.Roles;
 import application.services.interfaces.ManagerService;
 import application.services.interfaces.PriceService;
 import application.services.interfaces.UserService;
-import liquibase.pro.packaged.S;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +70,6 @@ public class AdminController {
         return CHANGE_PRICES;
     }
 
-
     @PostMapping(path = "/changeConcretePrice")
     public String changeConcretePrice(Model model, @RequestParam Long tempConcretePriceID,
                                       @RequestParam Double concretePrice) {
@@ -96,7 +94,6 @@ public class AdminController {
         return goToChangePricePage(model);
     }
 
-
     @GetMapping(path = "/newManager")
     public String goToNewManagerForm() {
         return CREATE_MANAGER_FORM;
@@ -105,14 +102,14 @@ public class AdminController {
     @PostMapping(path = "/createNewManager")
     public String createNewManager(Model model, @Valid UserDTO userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute(ADMIN_ERROR, ADMIN_ERROR);
+            model.addAttribute(PERSONAL_ERROR, PERSONAL_ERROR);
             return applicationExceptionController.sendErrorMessage(model, UPDATE_USER_FIELD_NULL, NEW_MANAGER_FORM);
         }
         userDTO.setRole(Roles.MANAGER);
         ManagerDTO managerDTO = managerService.createManager(userDTO);
 
         if (managerDTO == null) {
-            model.addAttribute(ADMIN_ERROR, ADMIN_ERROR);
+            model.addAttribute(PERSONAL_ERROR, PERSONAL_ERROR);
             return applicationExceptionController.sendErrorMessage(model, ERROR_USER_ALREADY_EXIST, NEW_MANAGER_FORM);
         }
         return goToAdminMainPage(model);

@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-default-value-user-table" author="ivan">
+        <insert tableName="user">
+            <column name="name" value="admin"/>
+            <column name="surname" value="admin"/>
+            <column name="telephone_number" value="+375-29-651-71-21"/>
+            <column name="email" value="admin@admin.by"/>
+            <column name="password" value="$2a$10$9QmKMTpv9ACfSrhEWZFoXusa96vCrxUuHCt2WgI9C8e5NZAPvRdRa"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <insert tableName="user">
+            <column name="name" value="manager"/>
+            <column name="surname" value="manager"/>
+            <column name="telephone_number" value="+375-29-650-70-20"/>
+            <column name="email" value="manager@manager.by"/>
+            <column name="password" value="$2a$10$Bnsz1ONQpRdTIxbSeia8zuTAny5sdMfqcvC5ol3wrSvRcXxXmCb2q"/>
+            <column name="role" value="MANAGER"/>
+        </insert>
+        <insert tableName="user">
+            <column name="name" value="user"/>
+            <column name="surname" value="user"/>
+            <column name="telephone_number" value="375-44-555-55-55"/>
+            <column name="email" value="user@user.by"/>
+            <column name="password" value="$2a$10$yycQFw5RgyRAi/OkBhfjNe/xVvj3T6SXwV8yt2E3Bp.S1auFhyRcG"/>
+            <column name="role" value="USER"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

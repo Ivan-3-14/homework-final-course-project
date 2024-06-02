@@ -6,19 +6,17 @@ import application.DTO.usersDTO.UserDTO;
 import application.entity.object.BuildingObject;
 import application.entity.order.Order;
 import application.entity.users.User;
-import liquibase.repackaged.net.sf.jsqlparser.statement.create.table.CreateTable;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mapper
 public interface BuildingObjectMapper {
 
-    ManagerMapper managerMapper = Mappers.getMapper(ManagerMapper.class);
+    ManagerMapper MANAGER_MAPPER = Mappers.getMapper(ManagerMapper.class);
 
     @Mapping(target = "id")
     @Mapping(expression = "java(getOrderSet(buildingObjectDTO))", target = "orderSet")
@@ -33,25 +31,21 @@ public interface BuildingObjectMapper {
     default Set<OrderDTO> getOrderDTOSet(BuildingObject buildingObject) {
         Set<OrderDTO> orderDTOSet = new HashSet<>();
         if (buildingObject != null && buildingObject.getOrderSet() != null) {
-            buildingObject.getOrderSet().forEach(o -> {
-                orderDTOSet.add(OrderDTO.builder()
-                        .id(o.getId())
-                        .volumeOfConcrete(o.getVolumeOfConcrete())
-                        .build());
-            });
+            buildingObject.getOrderSet().forEach(o -> orderDTOSet.add(OrderDTO.builder()
+                    .id(o.getId())
+                    .volumeOfConcrete(o.getVolumeOfConcrete())
+                    .build()));
         }
-           return orderDTOSet;
+        return orderDTOSet;
     }
 
     default Set<Order> getOrderSet(BuildingObjectDTO buildingObjectDTO) {
         Set<Order> orderSet = new HashSet<>();
         if (buildingObjectDTO != null && buildingObjectDTO.getOrderSet() != null) {
-            buildingObjectDTO.getOrderSet().forEach(o -> {
-                orderSet.add(Order.builder()
-                        .id(o.getId())
-                        .volumeOfConcrete(o.getVolumeOfConcrete())
-                        .build());
-            });
+            buildingObjectDTO.getOrderSet().forEach(o -> orderSet.add(Order.builder()
+                    .id(o.getId())
+                    .volumeOfConcrete(o.getVolumeOfConcrete())
+                    .build()));
         }
         return orderSet;
     }
@@ -63,7 +57,7 @@ public interface BuildingObjectMapper {
                 .surname(buildingObject.getUser().getSurname())
                 .email(buildingObject.getUser().getEmail())
                 .password(buildingObject.getUser().getPassword())
-                .manager(managerMapper.toDTO(buildingObject.getUser().getManager()))
+                .manager(MANAGER_MAPPER.toDTO(buildingObject.getUser().getManager()))
                 .telephoneNumber(buildingObject.getUser().getTelephoneNumber())
                 .role(buildingObject.getUser().getRole())
                 .build();
@@ -76,7 +70,7 @@ public interface BuildingObjectMapper {
                 .surname(buildingObjectDTO.getUser().getSurname())
                 .email(buildingObjectDTO.getUser().getEmail())
                 .password(buildingObjectDTO.getUser().getPassword())
-                .manager(managerMapper.toEntity(buildingObjectDTO.getUser().getManager()))
+                .manager(MANAGER_MAPPER.toEntity(buildingObjectDTO.getUser().getManager()))
                 .telephoneNumber(buildingObjectDTO.getUser().getTelephoneNumber())
                 .role(buildingObjectDTO.getUser().getRole())
                 .buildingObjectSet(new HashSet<>())

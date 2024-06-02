@@ -12,25 +12,14 @@
 
 <jsp:include page="allPageHeader.jsp"/>
 
-<%UserDTO userDTO = (UserDTO) request.getSession().getAttribute("currentUser");
-//String myOrderListPath = (String) request.getAttribute("myOrderListPath");
+<%UserDTO userDTO = (UserDTO) request.getSession().getAttribute(CURRENT_USER);
 %>
 
 <body>
 <%if (userDTO != null) {%>
-<% if (Roles.USER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
+<a style="font-size: 18px; color: mediumblue;  float: left; vertical-align: bottom;"
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
-<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/mainPageForManager.jsp'> Мой аккаунт
-</a>
-<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}/adminMyself'> Мой аккаунт
-</a>
-<% } %>
 <%}%>
 
 
@@ -43,7 +32,6 @@
     %>
 
     <input type='hidden' name="currentOrderId" value="<%=orderDTO.getId()%>">
-<%--    <input type='hidden' name="myOrderListPath" value="<%=myOrderListPath%>">--%>
 
     <label>
         Наименование объекта
@@ -147,23 +135,23 @@
     value="<%=orderDTO.getComment()%>"/>
     </label>
     </br>
+    <label>
+    <%if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) { %>
+        <input type='hidden' name="managerID" value="<%=userDTO.getManager().getId()%>">
+    <label style="margin-left: 1px; width: 420px;" for="OrderStatus">Статус Заказа</label>
+    <select id="OrderStatus" name="orderStatus" style="margin-top: 1px; width: 200px; height: 35px; text-align:center;
+     margin-left: 128px">
+        <option value="IN_WORK">в работе</option>
+        <option value="NEW">новый</option>
+        <option value="CLOSED">закрыт</option>
+    </select>
+    <%} %>
+    </label>
     <input style="width: 150px; height: 25px; text-align:center; margin-top: 12px; margin-left: 740px;"
            type="submit">
 </form>
 <% } %>
 
-<% if (request.getAttribute("checkGrade") != null) {%>
-<p style="color: #ec6767; margin-left: 550px; font-size: 18px;"> Марка бетона на гравии не может быть выше М300</p>
-<% } %>
-
-<% if (request.getAttribute("wrongDistanceOrVolume") != null) {%>
-<p style="color: #ec6767; margin-left: 550px; font-size: 18px;"> Расстояние и объём бетона должны быть указаны цифрами</p>
-<% } %>
-</body>
-
-<% if (request.getAttribute("wrongTimeOrDate") != null) {%>
-<p style="color: #ec6767; margin-left: 550px; font-size: 18px;"> Пожалуйста, выберите дату и время</p>
-<% } %>
 </body>
 
 <jsp:include page="forAllPage.jsp"/>

@@ -14,7 +14,7 @@
         color: rgb(13, 13, 13);
         margin-top: 25px;
         width: 200px;
-        margin-left: 620px;
+        margin-left: 40%;
     }
 
     .social-text{
@@ -50,7 +50,7 @@
         color: #fff;
         border: none;
         margin-top: 10px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         width: 200px;
         height: 35px;
         font-size: 15px;
@@ -104,7 +104,7 @@
         <button >Зарегистрироваться</button>
         <p style="margin-top: -2px;">забыли свой пароль? <a href="${pageContext.request.contextPath}forgotPassword">нажмите сюда</a></p>
 
-        <p>Уже зарегистрирован? <a class="social-text" href="${pageContext.request.contextPath}signUp">Войти</a></p>
+        <p>Уже зарегистрирован? <a class="social-text" href="${pageContext.request.contextPath}login">Войти</a></p>
 
         <div class="social-media">
             <a href="https://web.telegram.org/" class="social-icon">

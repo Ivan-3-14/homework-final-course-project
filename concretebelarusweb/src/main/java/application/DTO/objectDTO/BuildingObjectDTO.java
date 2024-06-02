@@ -1,7 +1,5 @@
 package application.DTO.objectDTO;
 
-import application.DTO.concreteDTO.ConcreteDTO;
-import application.DTO.concreteDTO.ConcreteGradeDTO;
 import application.DTO.orderDTO.OrderDTO;
 import application.DTO.usersDTO.UserDTO;
 import lombok.*;
@@ -26,12 +24,6 @@ public class BuildingObjectDTO {
 
     @EqualsAndHashCode.Exclude
     private UserDTO user;
-
-    @ToString.Exclude
-    private Set<ConcreteDTO> concretesSet = new HashSet<>();
-
-    @ToString.Exclude
-    private Set<ConcreteGradeDTO> concreteGradeSet = new HashSet<>();
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

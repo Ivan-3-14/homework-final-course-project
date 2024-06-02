@@ -19,4 +19,6 @@ public class OrderPaginationFilter {
     private int countOfTotalPage;
 
     private List<OrderDTO> listOrders;
+
+    private int countOfNewOrders;
 }

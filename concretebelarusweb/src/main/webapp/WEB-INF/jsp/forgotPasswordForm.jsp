@@ -9,7 +9,9 @@
             > Для смены пароля подтвердите, пожалуйста, свой email</h2>
             <div class="input-field" style="width: 30vw;">
                 <i class="fas fa-envelope"></i>
-                <input type="text" name="email" placeholder="email">
+                <label>
+                    <input type="text" name="email" placeholder="email">
+                </label>
                 <input type="hidden" name="password" >
             </div>
             <input type="submit" value="Проверить" class="btn">

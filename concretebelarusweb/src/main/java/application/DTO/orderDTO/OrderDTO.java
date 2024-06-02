@@ -4,11 +4,11 @@ import application.DTO.concreteDTO.ConcreteDTO;
 import application.DTO.concreteDTO.ConcreteGradeDTO;
 import application.DTO.concreteDTO.MobilityDTO;
 import application.DTO.objectDTO.BuildingObjectDTO;
+import application.DTO.usersDTO.ManagerDTO;
 import application.DTO.usersDTO.UserDTO;
 import application.entity.enums.orderstatus.OrderStatus;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Time;
@@ -55,5 +55,8 @@ public class OrderDTO {
 
     @EqualsAndHashCode.Exclude
     private UserDTO userDTO;
+
+    @EqualsAndHashCode.Exclude
+    private ManagerDTO managerDTO;
 
 }

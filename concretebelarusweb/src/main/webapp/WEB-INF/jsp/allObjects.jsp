@@ -29,29 +29,29 @@
 <body>
 <% UserDTO userDTO = (UserDTO) request.getSession().getAttribute(CURRENT_USER); %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
 
 <div>
-    <table style="border: none; margin-left: 40%; width: 10%; margin-bottom: 1px;">
+    <table style="border: none; margin-left: 40%; width: 10%; margin-bottom: 1px; margin-top: -3vw">
 <form action="${pageContext.request.contextPath}searchObject" method="get"
       style="margin-left: 40%; margin-top: 1vw">
 
-        <label >
+        <label>
             <input style="width: 12vw" type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
             <th style="border: none; text-align: right">
                 <input type="text" name="search" placeholder="найти объект">
             </th>
         </label>
     <th style="border: none; text-align: left">
-    <button>Поиск</button>
+    <button >Поиск</button>
     </th>
 
 </form>
         <form action="${pageContext.request.contextPath}myObjects" method="get">
             <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
             <th style="border: none; text-align: left">
-                <button style="background: none">Сброс</button>
+                <button>Сброс</button>
             </th>
         </form>
     </table>
@@ -91,12 +91,13 @@
 </table>
 <div
         style="display:flex; justify-content:center; align-items:center; height:20%;">
+    <% if(maxPage != 0) {%>
     <% if (userDTO != null) {%>
 <td>
     <form method ="get" action="${pageContext.request.contextPath}searchObject" >
         <button  style="margin: 6px; text-align: left">
             <%="первая  "%>
-            <input type="hidden" name="currentPage" value="<%=0%>" />
+            <input type="hidden" name="currentPage" value="<%=NULL_PAGE%>" />
             <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
             <input type="hidden" name="search" value="<%=request.getAttribute(SEARCH)%>">
         </button>
@@ -104,12 +105,12 @@
 </td>
 
     <td style="text-align: right">
-<% if (currentPage != 0) {
+<% if (currentPage != NULL_PAGE) {
     %>
     <form method ="get" action="${pageContext.request.contextPath}searchObject" >
         <button  style="margin: 6px">
             <%=currentPage%>
-            <input type="hidden" name="currentPage" value="<%=currentPage - 1%>" />
+            <input type="hidden" name="currentPage" value="<%=currentPage - FIRST_PAGE%>" />
             <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
             <input type="hidden" name="search" value="<%=request.getAttribute(SEARCH)%>">
         </button>
@@ -120,7 +121,7 @@
     <td>
         <form method ="get" action="${pageContext.request.contextPath}searchObject">
             <button  style="margin: 6px; color: cornflowerblue">
-                <%=currentPage + 1%>
+                <%=currentPage + FIRST_PAGE%>
                 <input type="hidden" name="currentPage" value="<%=currentPage%>" />
                 <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
                 <input type="hidden" name="search" value="<%=request.getAttribute(SEARCH)%>">
@@ -130,13 +131,13 @@
 
     <td>
         <%
-            if ((currentPage != maxPage-1)) {
+            if ((currentPage != maxPage - FIRST_PAGE)) {
         %>
 
         <form method="get" action="${pageContext.request.contextPath}searchObject">
-            <% int nextPage = currentPage + 2; %>
+            <% int nextPage = currentPage + SECOND_PAGE; %>
             <button style="margin: 6px">
-                <input type="hidden" name="currentPage" value="<%=nextPage-1%>"/>
+                <input type="hidden" name="currentPage" value="<%=nextPage - FIRST_PAGE%>"/>
                 <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
                 <input type="hidden" name="search" value="<%=request.getAttribute(SEARCH)%>">
                 <%=nextPage%></button>
@@ -146,7 +147,7 @@
     <td>
         <form method="get" action="${pageContext.request.contextPath}searchObject">
             <button style="margin: 6px; text-align: right">
-                <input type="hidden" name="currentPage" value="<%=maxPage-1%>"/>
+                <input type="hidden" name="currentPage" value="<%=maxPage - FIRST_PAGE%>"/>
                 <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
                 <input type="hidden" name="search" value="<%=request.getAttribute(SEARCH)%>">
                 <%="последняя"%></button>
@@ -154,7 +155,8 @@
 
         <%}%>
     </td>
-    <%}%>
+    <%}
+    }%>
 </div>
 </body>
 <jsp:include page="forAllPage.jsp"/>

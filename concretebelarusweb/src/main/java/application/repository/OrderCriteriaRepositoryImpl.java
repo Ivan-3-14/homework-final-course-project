@@ -5,13 +5,13 @@ import application.converter.OrderMapper;
 import application.entity.enums.aggregate.Aggregate;
 import application.entity.enums.grades.GradesConcrete;
 import application.entity.enums.orderstatus.OrderStatus;
+import application.entity.enums.roles.Roles;
 import application.entity.order.Order;
+import application.entity.users.User;
 import liquibase.repackaged.org.apache.commons.lang3.EnumUtils;
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
-import org.springframework.data.domain.Page;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -37,8 +37,10 @@ import static application.utils.Constant.*;
 public class OrderCriteriaRepositoryImpl implements OrderCriteriaRepository {
 
     private final EntityManager entityManager;
+    private final UserRepository userRepository;
     private final OrderMapper orderMapper = Mappers.getMapper(OrderMapper.class);
 
+    @Override
     public OrderPaginationFilter findAllOrderWithFilter(String search, Long currentUserId, int page) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
@@ -50,8 +52,8 @@ public class OrderCriteriaRepositoryImpl implements OrderCriteriaRepository {
         typedQuery.setFirstResult(page * ROW_IN_PAGE_ORDERS);
         typedQuery.setMaxResults(ROW_IN_PAGE_ORDERS);
 
-        double temp = Math. ceil((double) entityManager.createQuery(criteriaQuery).getResultList().size() /
-                ROW_IN_PAGE_ORDERS);
+        double temp = Math.ceil((double) entityManager.createQuery(criteriaQuery).getResultList().size()
+                / ROW_IN_PAGE_ORDERS);
 
         return OrderPaginationFilter.builder()
                 .listOrders(typedQuery.getResultList().stream().map(orderMapper::toDTO).collect(Collectors.toList()))
@@ -63,11 +65,15 @@ public class OrderCriteriaRepositoryImpl implements OrderCriteriaRepository {
     private List<Predicate> getPredicate(String search, Root<Order> orderRoot, CriteriaBuilder criteriaBuilder,
                                          Long currentUserId) {
         List<Predicate> predicates = new ArrayList<>();
+        User user = userRepository.getById(currentUserId);
 
         String pattern = String.format(LIKE_QUERY_PATTERN, search);
         Predicate predicate;
         Predicate idPredicate = criteriaBuilder.equal(orderRoot.get(USER).get(ID), currentUserId);
 
+        if (Roles.MANAGER.equals(user.getRole())) {
+            idPredicate = criteriaBuilder.equal(orderRoot.get(MANAGER).get(ID), user.getManager().getId());
+        }
 
         if (!StringUtils.isBlank(search)) {
 
@@ -108,5 +114,4 @@ public class OrderCriteriaRepositoryImpl implements OrderCriteriaRepository {
         }
         return predicates;
     }
-
 }

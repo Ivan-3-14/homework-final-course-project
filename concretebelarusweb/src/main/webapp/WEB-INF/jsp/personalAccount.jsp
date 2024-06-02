@@ -18,19 +18,9 @@ if (userDTO != null) {
     userDTO = (UserDTO) request.getSession().getAttribute(CURRENT_USER);
 }%>
 <body>
-<% if (Roles.USER.equals(userDTO.getRole())) { %>
 <a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}userMainPage'> Мой аккаунт
+   href='${pageContext.request.contextPath}signUp'> Мой аккаунт
 </a>
-<% } else if (Roles.MANAGER.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}mainPageForManager.jsp'> Мой аккаунт
-</a>
-<% } else if (Roles.ADMIN.equals(userDTO.getRole())) { %>
-<a style="font-size: 20px; color: mediumblue;  float: left; vertical-align: bottom;"
-   href='${pageContext.request.contextPath}adminMainPage'> Мой аккаунт
-</a>
-<% } %>
 
 <h3 style="text-align: center">Персональные данные </h3>
 <table style="margin: auto">
@@ -47,7 +37,7 @@ if (userDTO != null) {
 
     <tr>
         <td>Номер телефона     </td>
-        <td>+ <%=userDTO.getTelephoneNumber()%></td>
+        <td> <%=userDTO.getTelephoneNumber()%></td>
     </tr>
     <tr>
         <td>Электронная почта (email) </td>
