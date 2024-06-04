@@ -20,7 +20,6 @@
                 referencedColumnNames="id"
                 referencedTableName="user"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 </databaseChangeLog>

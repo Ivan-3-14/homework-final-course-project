@@ -104,7 +104,7 @@
 
 <div>
     <%if (userDTO != null && Roles.MANAGER.equals(userDTO.getRole())) { %>
-    <form action="${pageContext.request.contextPath}managerMainPage" method="get">
+    <form action="${pageContext.request.contextPath}signUp" method="get">
         <input type='hidden' name="currentUserId" value="<%=userDTO.getId()%>">
         <button> Подтвердить заказ </button>
     </form>

@@ -20,7 +20,7 @@ public class Mobility {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "value")
+    @Column(name = "mobility_value")
     @Enumerated(EnumType.STRING)
     private MobilityValue mobilityValue;
 

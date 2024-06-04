@@ -29,7 +29,7 @@ public class AutoCapacity {
     private DeliveryCoefficient deliveryCoefficient;
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "auto_price_id")
     private AutoPrice autoPrice;
 

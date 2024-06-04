@@ -18,7 +18,6 @@
                 referencedColumnNames="id"
                 referencedTableName="concrete_grade"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
     <changeSet id="add-foreign-key-constraint-to-concrete_grade_mobility2" author="ivan">
@@ -32,7 +31,6 @@
                 referencedColumnNames="id"
                 referencedTableName="concrete_mobility"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 </databaseChangeLog>

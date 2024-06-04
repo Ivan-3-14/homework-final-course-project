@@ -80,7 +80,7 @@
 <div >
     <form style="margin-left: 40%; margin-top: 2%; width: 300px; display: block;"
 
-          method="post" action="${pageContext.request.contextPath}authorization" >
+          method="post" modelAttribute="userForm" action="${pageContext.request.contextPath}registration" >
         <label>
             <input type="text" style="width: 200px; height: 35px;" name="name" placeholder="Имя"/>
         </label>

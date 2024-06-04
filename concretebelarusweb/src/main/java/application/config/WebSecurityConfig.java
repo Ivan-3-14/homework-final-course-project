@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -29,17 +31,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
+                .antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/adminMainPage").hasAnyAuthority("ADMIN")
                 .antMatchers("/userMainPage").hasAnyAuthority("USER")
                 .antMatchers("/managerMainPage").hasAnyAuthority("MANAGER")
                 .antMatchers("/mainPage").permitAll()
-                .antMatchers("/authorizationPage").permitAll()
-                .antMatchers("/authorization").permitAll()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/forgotPassword").permitAll()
                 .antMatchers("/verifyPassword").permitAll()
                 .antMatchers("/checkPassword").permitAll()
                 .antMatchers("/changePassword").permitAll()
+                .antMatchers("/personalAccount").hasAnyAuthority("MANAGER", "USER", "MANAGER")
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login")
@@ -54,6 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception {
+        return config.getAuthenticationManager();
     }
 
 }

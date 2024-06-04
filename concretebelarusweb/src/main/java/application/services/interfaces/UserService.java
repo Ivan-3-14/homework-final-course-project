@@ -3,6 +3,7 @@ package application.services.interfaces;
 import application.DTO.usersDTO.UserDTO;
 import application.entity.enums.roles.Roles;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 

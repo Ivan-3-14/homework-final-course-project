@@ -57,7 +57,7 @@
                 <button>Поиск</button>
             </th>
         </form>
-        <form action="${pageContext.request.contextPath}managerMainPage" method="get"
+        <form action="${pageContext.request.contextPath}signUp" method="get"
               style="margin-left: 55%; margin-top: 1vw">
             <input type="hidden" name="currentUserId" value="<%=userDTO.getId()%>">
             <th style="border: none; text-align: left">  <button>Сброс</button></th>

@@ -23,7 +23,6 @@
                 referencedColumnNames="id"
                 referencedTableName="auto_price"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
     <changeSet id="add-foreign-key-delivery-to-capacity" author="ivan">
@@ -37,7 +36,6 @@
                 referencedColumnNames="id"
                 referencedTableName="delivery_coefficient"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 </databaseChangeLog>

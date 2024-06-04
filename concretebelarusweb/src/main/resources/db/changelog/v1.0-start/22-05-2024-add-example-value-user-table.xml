@@ -19,7 +19,7 @@
         <insert tableName="user">
             <column name="name" value="user"/>
             <column name="surname" value="user"/>
-            <column name="telephone_number" value="375-44-555-55-55"/>
+            <column name="telephone_number" value="+375-44-555-55-55"/>
             <column name="email" value="user@user.by"/>
             <column name="password" value="$2a$10$yycQFw5RgyRAi/OkBhfjNe/xVvj3T6SXwV8yt2E3Bp.S1auFhyRcG"/>
             <column name="role" value="USER"/>

@@ -5,7 +5,7 @@
             <column name="id" autoIncrement="true" type="bigint">
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
-            <column name="value" type="varchar(200)" />
+            <column name="mobility_value" type="varchar(200)" />
         </createTable>
     </changeSet>
 </databaseChangeLog>

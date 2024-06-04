@@ -34,7 +34,7 @@ public class UserDTO {
     @NotBlank
     private String password;
 
-    private Roles role = Roles.USER;
+    private Roles role;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -47,4 +47,6 @@ public class UserDTO {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private ManagerDTO manager;
+
+    private Set<Roles> roles;
 }

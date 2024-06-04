@@ -47,8 +47,8 @@
     <%
     } else { %>
     <a style="font-size: 16px; color: mediumblue;  float: right; vertical-align: bottom; margin-right: 8px;margin-top: 4%"
-       href='${pageContext.request.contextPath}authorizationPage'> Войти/Зарегистрироваться
-
+       href='${pageContext.request.contextPath}registration'> Войти/Зарегистрироваться
+    </a>
     <% }%>
     <h1></h1>
 </header>

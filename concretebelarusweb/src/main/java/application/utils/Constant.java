@@ -49,7 +49,7 @@ public class Constant {
     public static final String SING_UP = "signUp";
     public static final String SEARCH = "search";
     public static final String LOGIN = "login";
-    public static final String AUTHORIZATION_PAGE = "authorizationPage";
+    public static final String AUTHORIZATION_PAGE = "registration";
     public static final String PERSONAL_ACCOUNT = "personalAccount";
     public static final String FORGOT_PASSWORD_FORM = "forgotPasswordForm";
     public static final String CHANGE_PASSWORD_FORM = "changePasswordForm";
@@ -81,6 +81,7 @@ public class Constant {
     public static final String MANAGER_ID = "managerId";
     public static final String UPDATE_USER = "updateUser";
     public static final String STATUS = "status";
+    public static final String USER_FORM = "userForm";
 
     public static final String SING_UP_ERROR_MESSAGE = "неверный email или пароль";
     public static final String PASSWORD_ERROR_MESSAGE = "неверный пароль";
@@ -99,6 +100,7 @@ public class Constant {
     public static final String INCORRECT_DATE = "выберите верную дату";
     public static final String INCORRECT_TIME = "выберите время доставки между 07:00 и 21:00";
     public static final String INCORRECT_AGGREGATE = "марка бетона на гравии не может превышать М300";
+    public static final String ERROR_USER_NOT_FOUND = "пользователь с таким email не найден";
 
     public static final String ERROR_MESSAGE = "errorMessage";
     public static final String PATH_TO_RETURN = "pathToReturn";

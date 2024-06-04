@@ -11,14 +11,20 @@ import application.services.interfaces.PriceService;
 import application.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import static application.utils.Constant.*;
@@ -32,6 +38,7 @@ public class UserController {
     private final OrderService orderService;
     private final AdminController adminController;
     private final ApplicationExceptionController applicationExceptionController;
+    private final AuthenticationManager authenticationManager;
 
     @GetMapping(path = "/mainPage")
     public String goToMainPage(Model model) {
@@ -42,23 +49,32 @@ public class UserController {
         return INDEX;
     }
 
-    @GetMapping(path = "/authorizationPage")
-    public String getAuthorizationForm() {
+    @GetMapping(path = "/registration")
+    public String getAuthorizationForm(Model model) {
+        model.addAttribute(USER_FORM, new UserDTO());
         return AUTHORIZATION_PAGE;
     }
 
-    @PostMapping(path = "/authorization")
-    public String createNewUser(Model model, @Valid UserDTO userDTO, BindingResult bindingResult) {
+    @PostMapping(path = "/registration")
+    public String createNewUser(Model model, @ModelAttribute(USER_FORM) @Valid UserDTO userForm, BindingResult bindingResult,
+                                HttpServletRequest request) {
+        String email = userForm.getEmail();
+        String password = userForm.getPassword();
 
         if (bindingResult.hasErrors()) {
             return applicationExceptionController.sendErrorMessage(model, UPDATE_USER_FIELD_NULL, AUTHORIZATION_PAGE);
         }
 
-        UserDTO newUser = userService.createUser(userDTO);
+        UserDTO newUser = userService.createUser(userForm);
         if (newUser == null) {
             return applicationExceptionController.sendErrorMessage(model, ERROR_USER_ALREADY_EXIST, AUTHORIZATION_PAGE);
         }
         model.addAttribute(CURRENT_USER, newUser);
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password);
+        authToken.setDetails(new WebAuthenticationDetails(request));
+        Authentication authentication = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         return MAIN_PAGE_FOR_USER;
     }
 
@@ -69,10 +85,9 @@ public class UserController {
 
     @GetMapping(path = "/signUp")
     public String signUp(Model model) {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         UserDTO userDTO = userService.getUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         if (userDTO == null) {
-            applicationExceptionController.sendErrorMessage(model, SING_UP_ERROR_MESSAGE, SING_UP);
+            applicationExceptionController.sendErrorMessage(model, SING_UP_ERROR_MESSAGE, AUTHORIZATION_PAGE);
             return null;
         }
         model.addAttribute(CURRENT_USER, userDTO);
@@ -123,13 +138,7 @@ public class UserController {
         UserDTO userDTO = userService.changePassword(newPassword1, newPassword2, currentUserId);
 
         if (userDTO != null) {
-            if (Roles.MANAGER.equals(userDTO.getRole())) {
-                return goToManagerMainPage(model, userDTO.getId(), ZERO);
-            } else if (Roles.ADMIN.equals(userDTO.getRole())) {
-                return adminController.goToAdminMainPage(model);
-            } else {
-                return MAIN_PAGE_FOR_USER;
-            }
+            return LOGIN;
         }
         return applicationExceptionController.sendErrorMessage(model, PASSWORDS_ERROR_MESSAGE, AUTHORIZATION_PAGE);
     }
@@ -146,7 +155,7 @@ public class UserController {
 
     @PostMapping(path = "/updateMyself")
     public String updateMyself(Model model, UserDTO userDTO, BindingResult bindingResult,
-                               @RequestParam Long currentUserId) {
+                               @RequestParam Long currentUserId, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return applicationExceptionController.sendErrorMessage(model, UPDATE_USER_FIELD_NULL, UPDATE_ME);
         }
@@ -157,6 +166,16 @@ public class UserController {
             return applicationExceptionController.sendErrorMessage(model, ERROR_USER_ALREADY_EXIST, UPDATE_ME);
         }
 
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(result.getEmail(), null);
+        authToken.setDetails(new WebAuthenticationDetails(request));
+        Authentication authentication = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equalsIgnoreCase(result.getEmail())) {
+            model.addAttribute(CURRENT_USER, null);
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return LOGIN;
+        }
         model.addAttribute(CURRENT_USER, result);
         return adminController.goToAccount();
     }
@@ -262,6 +281,7 @@ public class UserController {
     @GetMapping(path = "/exit")
     public String exitFromAccount(Model model) {
         model.addAttribute(CURRENT_USER, null);
-        return getAuthorizationForm();
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return getAuthorizationForm(model);
     }
 }

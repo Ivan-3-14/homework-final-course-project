@@ -32,7 +32,6 @@
                 referencedColumnNames="id"
                 referencedTableName="concrete"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 
@@ -47,7 +46,6 @@
                 referencedColumnNames="id"
                 referencedTableName="concrete_grade"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 
@@ -62,7 +60,6 @@
                 referencedColumnNames="id"
                 referencedTableName="concrete_mobility"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 
@@ -77,7 +74,6 @@
                 referencedColumnNames="id"
                 referencedTableName="building_object"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 
@@ -92,7 +88,6 @@
                 referencedColumnNames="id"
                 referencedTableName="user"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 
@@ -107,7 +102,6 @@
                 referencedColumnNames="id"
                 referencedTableName="manager"
                 referencedTableCatalogName="c_b_web"
-                referencedTableSchemaName="c_b_web"
         />
     </changeSet>
 </databaseChangeLog>

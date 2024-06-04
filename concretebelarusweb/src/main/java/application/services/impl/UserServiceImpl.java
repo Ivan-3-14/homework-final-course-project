@@ -15,8 +15,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static application.utils.Constant.*;
@@ -33,9 +35,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
+        Set<Roles> rolesSet = new HashSet<>();
         if (!alreadyExists(userDTO)) {
             log.info(logPrint(ALREADY_EXIST_END));
+            userDTO.setRole(Roles.USER);
             userDTO.setPassword(getHashedPassword(userDTO.getPassword()));
+            rolesSet.add(Roles.USER);
+            userDTO.setRoles(rolesSet);
             log.info(logPrint(CREATE_USER_SUCCESSFUL_END));
             return userMapper.toDTO(userRepository.save(userMapper.toEntity(userDTO)));
         }
@@ -50,6 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
+        userDTO.setRole(userRepository.getById(userDTO.getId()).getRole());
         userDTO = checkExistUpdateUser(userDTO);
         return Optional.ofNullable(userDTO)
                 .map(userMapper::toEntity)
@@ -90,6 +97,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         User user = userRepository.getById(currentUserId);
+        System.out.println(user.getRole());
         user.setPassword(getHashedPassword(password1));
         return userMapper.toDTO(userRepository.save(user));
     }

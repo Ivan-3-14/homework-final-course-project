@@ -26,7 +26,7 @@ public class Concrete {
     private Aggregate aggregate;
 
     @Builder.Default
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "concrete_concrete_grade",
             joinColumns = {@JoinColumn(name = "concrete_id")},
             inverseJoinColumns = {@JoinColumn(name = "concrete_grade_id")})
