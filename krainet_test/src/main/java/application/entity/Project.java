@@ -19,6 +19,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Range(max = 100)
     @Column(name = "readiness_level")
     private Integer readinessLevel;

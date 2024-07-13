@@ -15,9 +15,13 @@ public class ProjectDTO {
 
     private Long id;
 
+    private String name;
+
     private Integer readinessLevel;
 
     private String description;
+
+    private Set<RecordDTO> recordDTOSet;
 
     private Set<UserDTO> userDTOSet;
 }

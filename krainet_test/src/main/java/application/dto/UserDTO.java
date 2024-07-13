@@ -1,5 +1,6 @@
 package application.dto;
 
+import application.entity.Record;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,4 +32,6 @@ public class UserDTO {
     private Set<RoleDTO> roles;
 
     private Set<ProjectDTO> projectSet;
+
+    private Set<Record> recordSet;
 }
