@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_user_role" author="via">
+        <createTable tableName="user_role">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-user-to-user-role" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="user_role"
+                baseTableCatalogName="db_test_krainet"
+                constraintName="fk_user_user_role_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="user"
+                referencedTableCatalogName="db_test_krainet"
+        />
+    </changeSet>
+    <changeSet id="add-foreign-key-constraint-role-to-user-role" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="role_id"
+                baseTableName="user_role"
+                baseTableCatalogName="db_test_krainet"
+                constraintName="fk_role_user_role_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="roles"
+                referencedTableCatalogName="db_test_krainet"
+        />
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_record" author="ivan">
+        <createTable tableName="record">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="start_time" type="timestamp" />
+            <column name="end_time" type="timestamp" />
+            <column name="record_duration" type="bigint" />
+            <column name="project_id" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-project-to-record" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="project_id"
+                baseTableName="record"
+                baseTableCatalogName="db_test_krainet"
+                constraintName="fk_record_project_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="project"
+                referencedTableCatalogName="db_test_krainet"
+        />
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint-user-to-record" author="ivan">
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="record"
+                baseTableCatalogName="db_test_krainet"
+                constraintName="fk_record_user_id"
+                onUpdate="CASCADE"
+                onDelete="NO ACTION"
+                referencedColumnNames="id"
+                referencedTableName="user"
+                referencedTableCatalogName="db_test_krainet"
+        />
+    </changeSet>
+</databaseChangeLog>
