@@ -1,10 +1,7 @@
 package application.dto;
 
 import application.entity.Record;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
@@ -24,14 +21,18 @@ public class UserDTO {
     private String surname;
 
     @NotBlank
+    @ToString.Exclude
     private String password;
 
     @NotBlank
     private String login;
 
+    @ToString.Exclude
     private Set<RoleDTO> roles;
 
+    @ToString.Exclude
     private Set<ProjectDTO> projectSet;
 
+    @ToString.Exclude
     private Set<Record> recordSet;
 }

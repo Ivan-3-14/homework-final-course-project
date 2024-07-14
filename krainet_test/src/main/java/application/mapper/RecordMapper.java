@@ -26,6 +26,8 @@ public interface RecordMapper {
         return ProjectDTO.builder()
                 .id(record.getProject().getId())
                 .name(record.getProject().getName())
+                .description(record.getProject().getDescription())
+                .readinessLevel(record.getProject().getReadinessLevel())
                 .build();
     }
 
@@ -33,6 +35,8 @@ public interface RecordMapper {
         return Project.builder()
                 .id(recordDTO.getProject().getId())
                 .name(recordDTO.getProject().getName())
+                .description(recordDTO.getProject().getDescription())
+                .readinessLevel(recordDTO.getProject().getReadinessLevel())
                 .build();
     }
 

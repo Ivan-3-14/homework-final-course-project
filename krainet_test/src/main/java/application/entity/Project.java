@@ -1,9 +1,10 @@
 package application.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +23,10 @@ public class Project {
     @Column(name = "name")
     private String name;
 
-    @Range(max = 100)
+    @DecimalMax("1.0")
+    @DecimalMin("0.0")
     @Column(name = "readiness_level")
-    private Integer readinessLevel;
+    private Double readinessLevel;
 
     @Column(name = "description")
     private String description;

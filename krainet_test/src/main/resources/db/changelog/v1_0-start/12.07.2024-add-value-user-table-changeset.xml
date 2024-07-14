@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-value_table_roles" author="ivan">
+
+        <insert tableName="users">
+            <column name="name" value="admin"/>
+            <column name="surname" value="admin"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2a$10$9QmKMTpv9ACfSrhEWZFoXusa96vCrxUuHCt2WgI9C8e5NZAPvRdRa"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="name" value="user"/>
+            <column name="surname" value="user"/>
+            <column name="login" value="user"/>
+            <column name="password" value="$2a$10$yycQFw5RgyRAi/OkBhfjNe/xVvj3T6SXwV8yt2E3Bp.S1auFhyRcG"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="name" value="manager"/>
+            <column name="surname" value="manager"/>
+            <column name="login" value="manager"/>
+            <column name="password" value="$2a$10$Bnsz1ONQpRdTIxbSeia8zuTAny5sdMfqcvC5ol3wrSvRcXxXmCb2q"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

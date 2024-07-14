@@ -17,7 +17,7 @@ public class ProjectDTO {
 
     private String name;
 
-    private Integer readinessLevel;
+    private Double readinessLevel;
 
     private String description;
 
