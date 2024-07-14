@@ -1,6 +1,5 @@
 package application.service.interfaces;
 
-import application.dto.ProjectDTO;
 import application.dto.UserDTO;
 
 import java.util.List;
