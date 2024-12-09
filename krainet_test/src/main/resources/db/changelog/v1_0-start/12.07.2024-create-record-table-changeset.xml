@@ -35,7 +35,7 @@
                 onUpdate="CASCADE"
                 onDelete="NO ACTION"
                 referencedColumnNames="id"
-                referencedTableName="user"
+                referencedTableName="users"
                 referencedTableCatalogName="db_test_krainet"
         />
     </changeSet>

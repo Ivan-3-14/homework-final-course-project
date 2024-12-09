@@ -11,4 +11,14 @@
              relativeToChangelogFile="true"/>
     <include file="12.07.2024-create-project-user-table-changeset.xml"
              relativeToChangelogFile="true"/>
+    <include file="12.07.2024-add-value-roles-table-changeset.xml"
+             relativeToChangelogFile="true"/>
+    <include file="12.07.2024-add-value-user-table-changeset.xml"
+             relativeToChangelogFile="true"/>
+    <include file="12.07.2024-add-value-user-role-table-changeset.xml"
+             relativeToChangelogFile="true"/>
+    <include file="12.07.2024-add-value-project-table-changeset.xml"
+             relativeToChangelogFile="true"/>
+    <include file="12.07.2024-add-value-project-user-table-changeset.xml"
+             relativeToChangelogFile="true"/>
 </databaseChangeLog>

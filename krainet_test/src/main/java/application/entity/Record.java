@@ -25,7 +25,7 @@ public class Record {
     private Timestamp endTime = new Timestamp(System.currentTimeMillis());
 
     @Column(name = "record_duration")
-    private Duration duration = Duration.between(startTime.toLocalDateTime(), endTime.toLocalDateTime());
+    private Duration duration;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

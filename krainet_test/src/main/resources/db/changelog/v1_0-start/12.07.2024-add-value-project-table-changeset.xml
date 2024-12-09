@@ -1,0 +1,35 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add-value_table_project" author="ivan">
+
+        <insert tableName="project">
+            <column name="name" value="voka"/>
+            <column name="description" value=" voka description text"/>
+            <column name="readiness_level" value="0.58"/>
+        </insert>
+
+        <insert tableName="project">
+            <column name="name" value="ivi"/>
+            <column name="description" value=" ivi description text"/>
+            <column name="readiness_level" value="0.42"/>
+        </insert>
+
+        <insert tableName="project">
+            <column name="name" value="kivi"/>
+            <column name="description" value=" kivi description text"/>
+            <column name="readiness_level" value="0.95"/>
+        </insert>
+
+        <insert tableName="project">
+            <column name="name" value="flo"/>
+            <column name="description" value=" flo description text"/>
+            <column name="readiness_level" value="0.87"/>
+        </insert>
+
+        <insert tableName="project">
+            <column name="name" value="food delivery"/>
+            <column name="description" value=" food delivery description text"/>
+            <column name="readiness_level" value="0.33"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
